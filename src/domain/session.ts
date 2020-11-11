@@ -4,8 +4,8 @@ import {createNanoEvents, Emitter} from "nanoevents";
 export interface ISessionRepository {
     save: (session: Session) => Promise<void>;
     createSessionWith: (counterpartyUniqueId: string) => Promise<Session>;
-    delete: (sessionId: any) => Promise<void>;
-    get: (sessionId: any) => Promise<Session>;
+    deleteById: (sessionId: any) => Promise<void>;
+    getById: (sessionId: any) => Promise<Session>;
 }
 
 export enum SessionStatus {
