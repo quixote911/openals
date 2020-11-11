@@ -42,5 +42,9 @@
     "jest": "^21.2.1",
     "ts-jest": "^21.1.4",
     "typescript": "^2.6.1"
+  },
+  "dependencies": {
+    "nanoevents": "^5.1.10",
+    "jsonschema": "^1.4.0"
   }
 }
