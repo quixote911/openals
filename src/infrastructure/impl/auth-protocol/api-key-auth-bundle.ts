@@ -23,7 +23,6 @@ class ApiKeyAuthProtocolLogic implements IAuthProtocolLogic {
 
 const credentialSchema: Schema = {
     type: "object",
-    // tslint:disable-next-line:object-literal-sort-keys
     required: ["apiKey"],
     properties: {
         apiKey: {
