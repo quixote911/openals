@@ -1,3 +1,2 @@
-export function sum(a: number, b: number) {
-  return a + b;
-}
+import {SecureContext} from "./application/secure-context";
+export { SecureContext };
