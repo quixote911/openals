@@ -2,10 +2,10 @@ import {AuthProtocol, IAuthProtocolEvents} from "./auth-protocol";
 import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 
 export interface ISessionRepository {
-    save: (session: Session) => Promise<void>;
-    createSessionWith: (counterpartyUniqueId: string) => Promise<Session>;
-    deleteById: (sessionId: unknown) => Promise<void>;
-    getById: (sessionId: unknown) => Promise<Session>;
+    // save: (session: Session) => Promise<void>;
+    getOrCreate: (counterpartyUniqueId: string) => Promise<Session>;
+    // deleteById: (sessionId: unknown) => Promise<void>;
+    // getById: (sessionId: unknown) => Promise<Session>;
 }
 
 export enum SessionStatus {
@@ -18,7 +18,7 @@ export enum SessionStatus {
 export interface ISessionState {
     sessionId: string;
     status: SessionStatus;
-    sessionVariables: unknown;
+    sessionVariables?: unknown;
 }
 
 interface ISessionEvents {
