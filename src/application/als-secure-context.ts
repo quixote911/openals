@@ -28,12 +28,13 @@ const securitySchemaData: ISecuritySchemaRawData = {
         }
     }
 }
+const sampleSecuritySchemaProvider = new InMemorySecuritySchemaProvider(securitySchemaData);
 
-export class SecureContext {
+export class ALSSecureContext {
     private sessionRepo: ISessionRepository;
     constructor(credentialProvider: ICredentialProvider, sessionStore?: ISessionStore, securitySchemaProvider?: ISecuritySchemaProvider) {
         sessionStore = sessionStore || new InMemorySessionStore();
-        securitySchemaProvider = securitySchemaProvider || new InMemorySecuritySchemaProvider(securitySchemaData);
+        securitySchemaProvider = securitySchemaProvider || sampleSecuritySchemaProvider;
         this.sessionRepo = new InternetSessionRepository(credentialProvider, sessionStore, securitySchemaProvider);
     }
     public getSession = async (counterpartyId: string): Promise<Session> => {
