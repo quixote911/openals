@@ -1,6 +1,7 @@
 import {ISessionRepository, Session} from "../domain/session";
 import apiKeyAuthTypeBundle from "../infrastructure/impl/auth-protocol/api-key-auth-bundle"
 import {
+    ICredentialProvider,
     InternetSessionRepository, ISecuritySchema, ISecuritySchemaProvider,
     ISessionStore
 } from "../infrastructure/impl/session/internet-session-repository/repo";
@@ -30,10 +31,10 @@ const securitySchemaData: ISecuritySchemaRawData = {
 
 export class SecureContext {
     private sessionRepo: ISessionRepository;
-    constructor(selfCredentials: unknown, sessionStore?: ISessionStore, securitySchemaProvider?: ISecuritySchemaProvider) {
+    constructor(credentialProvider: ICredentialProvider, sessionStore?: ISessionStore, securitySchemaProvider?: ISecuritySchemaProvider) {
         sessionStore = sessionStore || new InMemorySessionStore();
         securitySchemaProvider = securitySchemaProvider || new InMemorySecuritySchemaProvider(securitySchemaData);
-        this.sessionRepo = new InternetSessionRepository(selfCredentials, sessionStore, securitySchemaProvider);
+        this.sessionRepo = new InternetSessionRepository(credentialProvider, sessionStore, securitySchemaProvider);
     }
     public getSession = async (counterpartyId: string): Promise<Session> => {
         return this.sessionRepo.getOrCreate(counterpartyId);

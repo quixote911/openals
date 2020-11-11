@@ -16,14 +16,18 @@ export interface ISecuritySchemaProvider {
     get: (uniqueId: string) => Promise<ISecuritySchema>
 }
 
+export interface ICredentialProvider {
+    get: (uniqueId: string) => Promise<unknown>
+}
+
 export class InternetSessionRepository implements ISessionRepository {
-    private selfCredentials: unknown;
     private sessionStore: ISessionStore;
     private securitySchemaStore: ISecuritySchemaProvider;
+    private credentialProvider: ICredentialProvider;
 
-    constructor(selfCredentials: unknown, sessionStore: ISessionStore, securitySchemaStore: ISecuritySchemaProvider) {
+    constructor(credentialProvider: ICredentialProvider, sessionStore: ISessionStore, securitySchemaStore: ISecuritySchemaProvider) {
         // TODO: Further abstract out the base data structures
-        this.selfCredentials = selfCredentials;
+        this.credentialProvider = credentialProvider;
         this.sessionStore = sessionStore;
         this.securitySchemaStore = securitySchemaStore;
     }
@@ -32,7 +36,8 @@ export class InternetSessionRepository implements ISessionRepository {
         const sessionState = await this.sessionStore.getByCounterpartyId(uniqueId) || this.getInitialSessionState();
         const securitySchema: ISecuritySchema = await this.securitySchemaStore.get(uniqueId);
         const authProtocol = new AuthProtocol(securitySchema.bundle.authProtocolSchema, securitySchema.bundle.authProtocolLogic)
-        return new Session(sessionState, authProtocol, this.selfCredentials, securitySchema.settings)
+        const credentials = this.credentialProvider.get(uniqueId);
+        return new Session(sessionState, authProtocol, credentials, securitySchema.settings)
     };
     private getInitialSessionState = (): ISessionState => {
         return {

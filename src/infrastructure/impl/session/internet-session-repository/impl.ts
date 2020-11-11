@@ -1,4 +1,4 @@
-import {ISecuritySchema, ISecuritySchemaProvider, ISessionStore} from "./repo";
+import {ICredentialProvider, ISecuritySchema, ISecuritySchemaProvider, ISessionStore} from "./repo";
 import {ISessionState} from "../../../../domain/session";
 
 
@@ -13,6 +13,15 @@ export class InMemorySessionStore implements ISessionStore {
     public save = async (uniqueId: string, sessionState: ISessionState): Promise<void> => {
         this.store[uniqueId] = sessionState;
     }
+}
+export class InMemoryCredentialProvider implements ICredentialProvider {
+    private readonly storeMapping: Record<string, unknown>;
+    constructor(storeMapping: Record<string, unknown>) {
+        this.storeMapping = storeMapping;
+    }
+    public get = async (uniqueId: string): Promise<unknown> => {
+        return this.storeMapping[uniqueId];
+    };
 }
 
 export class InMemorySecuritySchemaProvider implements ISecuritySchemaProvider {
