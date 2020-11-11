@@ -1,4 +1,5 @@
 import {AuthProtocol, IAuthProtocolEvents} from "./auth-protocol";
+import {createNanoEvents, Emitter} from "nanoevents";
 
 export interface ISessionRepository {
     save: (session: Session) => Promise<void>;
@@ -20,6 +21,10 @@ export interface ISessionState {
     sessionVariables: unknown;
 }
 
+interface ISessionEvents {
+    stateChanged: (newState: ISessionState) => void;
+}
+
 export class Session {
     // TODO: [Long term] Right now this works only for client. What about server?
     public readonly selfCredentials: unknown;
@@ -29,12 +34,15 @@ export class Session {
         activated: (newSessionVariables: any) => {
             this.sessionState.sessionVariables = newSessionVariables;
             this.sessionState.status = SessionStatus.ACTIVE;
+            this.externalEmitter.emit("stateChanged", this.sessionState);
         },
         blocked: () => {
             this.sessionState.status = SessionStatus.BLOCKED;
+            this.externalEmitter.emit("stateChanged", this.sessionState);
         },
         expired: () => {
             this.sessionState.status = SessionStatus.EXPIRED;
+            this.externalEmitter.emit("stateChanged", this.sessionState);
         },
         // tslint:disable-next-line:object-literal-sort-keys
         error: (err: unknown) => {
@@ -43,10 +51,12 @@ export class Session {
         },
     };
     private readonly authProtocolSettings: unknown;
+    private externalEmitter: Emitter<ISessionEvents>;
 
     // TODO: unknown vs object as type here?
     constructor(sessionState: ISessionState, authProtocol: AuthProtocol, selfCredentials: unknown, authProtocolSettings?: unknown) {
         this.validateSessionInputs(sessionState, authProtocol, selfCredentials, authProtocolSettings);
+        this.externalEmitter = createNanoEvents<ISessionEvents>();
         this.sessionState = sessionState;
         this.selfCredentials = selfCredentials;
         this.authProtocolSettings = authProtocolSettings;
@@ -54,6 +64,10 @@ export class Session {
         this.authProtocol.on("activated", this.authProtocolEventHandlers.activated);
         this.authProtocol.on("blocked", this.authProtocolEventHandlers.blocked);
         this.authProtocol.on("expired", this.authProtocolEventHandlers.expired);
+    }
+
+    public on = <E extends keyof ISessionEvents>(event: E, callback: ISessionEvents[E]) => {
+        return this.externalEmitter.on(event, callback);
     }
 
     public processIncoming = async (message: any) => {
