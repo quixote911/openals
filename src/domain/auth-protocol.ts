@@ -67,6 +67,7 @@ export class AuthProtocol {
         },
     };
     constructor(authProtocolSchema: IAuthProtocolSchema, authProtocolLogic: IAuthProtocolLogic) {
+        this.validateAuthProtocolInputs(authProtocolSchema, authProtocolLogic);
         this.authProtocolLogic = authProtocolLogic;
         this.authProtocolSchema = authProtocolSchema;
         this.externalEmitter = createNanoEvents<IAuthProtocolEvents>();
@@ -113,6 +114,11 @@ export class AuthProtocol {
         this.validateSettings(authProtocolSettings);
         this.validateSessionVariables(sessionVariables);
         return { authProtocolSettings, selfCredentials, sessionVariables };
+    }
+
+    private validateAuthProtocolInputs = (authProtocolSchema: IAuthProtocolSchema, authProtocolLogic: IAuthProtocolLogic) => {
+        // TODO: Add some kind of validation
+        return;
     }
 }
 

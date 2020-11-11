@@ -1,15 +1,11 @@
 import {AuthProtocol, IAuthProtocolEvents} from "./auth-protocol";
 
 export interface ISessionRepository {
-    get: (sessionId: any) => Promise<Session>;
-    update: (session: Session) => Promise<void>;
-    create: (counterpartyUniqueId: string) => Promise<Session>;
+    save: (session: Session) => Promise<void>;
+    createSessionWith: (counterpartyUniqueId: string) => Promise<Session>;
     delete: (sessionId: any) => Promise<void>;
+    get: (sessionId: any) => Promise<Session>;
 }
-
-// export interface ICredentialManager {
-//     getCredentials: () => object;
-// }
 
 export enum SessionStatus {
     INIT = "INIT",
@@ -50,9 +46,7 @@ export class Session {
 
     // TODO: unknown vs object as type here?
     constructor(sessionState: ISessionState, authProtocol: AuthProtocol, selfCredentials: unknown, authProtocolSettings?: unknown) {
-        this.validateSessionState(sessionState);
-        authProtocol.validateCredentials(selfCredentials);
-        authProtocol.validateSettings(authProtocolSettings);
+        this.validateSessionInputs(sessionState, authProtocol, selfCredentials, authProtocolSettings);
         this.sessionState = sessionState;
         this.selfCredentials = selfCredentials;
         this.authProtocolSettings = authProtocolSettings;
@@ -73,12 +67,13 @@ export class Session {
     public ensureActive = async () => {
         await this.authProtocol.ensureActiveSession(this.sessionState.sessionVariables, this.selfCredentials, this.authProtocolSettings);
     }
-    // tslint:disable-next-line:no-empty
-    private validateSessionState = (sessionState: ISessionState) => {
+    private validateSessionInputs = (sessionState: ISessionState, authProtocol: AuthProtocol, selfCredentials: unknown, authProtocolSettings?: unknown) => {
         // @ts-ignore
         if (!Object.values(SessionStatus).includes(sessionState.status)) {
             throw Error("Invalid status in sessionState");
         }
         this.authProtocol.validateSessionVariables(sessionState.sessionVariables);
+        authProtocol.validateCredentials(selfCredentials);
+        authProtocol.validateSettings(authProtocolSettings);
     }
 }
