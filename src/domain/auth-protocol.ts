@@ -1,6 +1,5 @@
 import {Schema, Validator} from "jsonschema";
 import {createNanoEvents, Emitter} from "nanoevents";
-import {ISessionState} from "./session";
 
 export interface ISessionStateChangeEvents {
     activated: (newSessionData: unknown) => void;
@@ -49,7 +48,6 @@ export interface IAuthProtocolBundle {
 export class AuthProtocol {
     public readonly authProtocolSchema: IAuthProtocolSchema;
     public readonly authProtocolLogic: IAuthProtocolLogic;
-    public readonly authProtocolSettings: unknown;
     private readonly internalEmitter: Emitter<ISessionStateChangeEvents>;
     private readonly externalEmitter: Emitter<IAuthProtocolEvents>;
     private readonly stateChangeEventHandlers: ISessionStateChangeEvents = {
@@ -102,26 +100,44 @@ export class AuthProtocol {
     }
 
     public validateCredentials = (credentials: unknown) => {
+        AuthProtocolValidationHelper.validateCredentials(credentials, this.authProtocolSchema.credentialSchema);
+    }
+    public validateSettings = (authProtocolSettings: unknown) => {
+        AuthProtocolValidationHelper.validateSettings(authProtocolSettings, this.authProtocolSchema.settingsSchema);
+    }
+    public validateSessionVariables = (sessionVariables: unknown) => {
+        AuthProtocolValidationHelper.validateSessionVariables(sessionVariables, this.authProtocolSchema.sessionVariablesSchema);
+    }
+    private getContext = (selfCredentials: unknown, sessionVariables: unknown, authProtocolSettings: unknown): IAuthProtocolContext => {
+        this.validateCredentials(selfCredentials);
+        this.validateSettings(authProtocolSettings);
+        this.validateSessionVariables(sessionVariables);
+        return { authProtocolSettings, selfCredentials, sessionVariables };
+    }
+}
+
+
+class AuthProtocolValidationHelper {
+    public static validateCredentials = (credentials: unknown, credentialSchema: Schema) => {
         const v = new Validator();
         if (!credentials) {
             throw Error("Credentials must be there");
         }
 
-        if (this.authProtocolSchema.credentialSchema) {
-            const result = v.validate(credentials, this.authProtocolSchema.credentialSchema);
+        if (credentialSchema) {
+            const result = v.validate(credentials, credentialSchema);
             if (!result.valid) {
                 throw new Error("credentials are invalid as per credentialSchema");
             }
         } else {
             throw new Error("No credentialSchema is input");
         }
-
     }
-    public validateSettings = (authProtocolSettings: unknown) => {
+    public static validateSettings = (authProtocolSettings: unknown, settingsSchema?: Schema) => {
         const v = new Validator();
         if (authProtocolSettings) {
-            if (this.authProtocolSchema.settingsSchema) {
-                const result = v.validate(authProtocolSettings, this.authProtocolSchema.settingsSchema);
+            if (settingsSchema) {
+                const result = v.validate(authProtocolSettings, settingsSchema);
                 if (!result.valid) {
                     throw new Error("authProtocolSettings is invalid as per settingsSchema");
                 }
@@ -130,11 +146,11 @@ export class AuthProtocol {
             }
         }
     }
-    public validateSessionVariables = (sessionVariables: unknown) => {
+    public static validateSessionVariables = (sessionVariables: unknown, sessionVariablesSchema?: Schema) => {
         const v = new Validator();
         if (sessionVariables) {
-            if (this.authProtocolSchema.sessionVariablesSchema) {
-                const result = v.validate(sessionVariables, this.authProtocolSchema.sessionVariablesSchema);
+            if (sessionVariablesSchema) {
+                const result = v.validate(sessionVariables, sessionVariablesSchema);
                 if (!result.valid) {
                     throw new Error("sessionVariables is invalid as per sessionVariablesSchema");
                 }
@@ -143,14 +159,8 @@ export class AuthProtocol {
             }
         }
     }
-    private getContext = (selfCredentials: unknown, sessionVariables: unknown, authProtocolSettings: unknown): IAuthProtocolContext => {
-        this.validateCredentials(selfCredentials);
-        this.validateSettings(authProtocolSettings);
-        this.validateSessionVariables(sessionVariables);
-        return {
-            authProtocolSettings: this.authProtocolSettings,
-            selfCredentials,
-            sessionVariables,
-        };
-    }
 }
+
+
+
+
