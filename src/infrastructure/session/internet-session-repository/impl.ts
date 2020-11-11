@@ -1,5 +1,5 @@
 import {ICredentialProvider, ISecuritySchema, ISecuritySchemaProvider, ISessionStore} from "./repo";
-import {ISessionState} from "../../../../domain/session";
+import {ISessionState} from "../../../domain/session";
 
 
 export class InMemorySessionStore implements ISessionStore {

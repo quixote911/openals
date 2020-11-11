@@ -1,5 +1,5 @@
-import {ISessionRepository, ISessionState, Session, SessionStatus} from "../../../../domain/session";
-import {AuthProtocol, IAuthProtocolBundle} from "../../../../domain/auth-protocol";
+import {ISessionRepository, ISessionState, Session, SessionStatus} from "../../../domain/session";
+import {AuthProtocol, IAuthProtocolBundle} from "../../../domain/auth-protocol";
 import {v4 as uuidv4} from "uuid";
 
 export interface ISecuritySchema {

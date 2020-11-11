@@ -1,14 +1,14 @@
 import {ISessionRepository, Session} from "../domain/session";
-import apiKeyAuthTypeBundle from "../infrastructure/impl/auth-protocol/api-key-auth-bundle"
+import apiKeyAuthTypeBundle from "../infrastructure/auth-protocol/api-key-auth-bundle"
 import {
     ICredentialProvider,
     InternetSessionRepository, ISecuritySchema, ISecuritySchemaProvider,
     ISessionStore
-} from "../infrastructure/impl/session/internet-session-repository/repo";
+} from "../infrastructure/session/internet-session-repository/repo";
 import {
     InMemorySecuritySchemaProvider,
     InMemorySessionStore
-} from "../infrastructure/impl/session/internet-session-repository/impl";
+} from "../infrastructure/session/internet-session-repository/impl";
 
 
 enum OAIAuthTypes {

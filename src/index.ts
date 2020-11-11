@@ -3,6 +3,6 @@ import {
     ICredentialProvider,
     ISecuritySchemaProvider,
     ISessionStore
-} from "./infrastructure/impl/session/internet-session-repository/repo";
-import * as impl from "./infrastructure/impl/session/internet-session-repository/impl"
+} from "./infrastructure/session/internet-session-repository/repo";
+import * as impl from "./infrastructure/session/internet-session-repository/impl"
 export { ALSSecureContext, ICredentialProvider, ISessionStore, ISecuritySchemaProvider, impl};

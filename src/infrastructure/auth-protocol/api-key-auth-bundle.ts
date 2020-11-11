@@ -5,7 +5,7 @@ import {
     IAuthProtocolContext,
     IAuthProtocolLogic,
     ISessionStateChangeEvents
-} from "../../../domain/auth-protocol";
+} from "../../domain/auth-protocol";
 
 class ApiKeyAuthProtocolLogic implements IAuthProtocolLogic {
     public ensureActiveSession = async (context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>): Promise<void> => {
