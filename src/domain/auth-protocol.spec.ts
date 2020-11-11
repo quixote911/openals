@@ -1,12 +1,23 @@
-import { AuthProtocol } from "./auth-protocol";
+import {
+  AuthProtocol,
+  IAuthProtocolContext,
+  IAuthProtocolLogic,
+  IAuthProtocolSchema,
+  ISessionStateChangeEvents
+} from "./auth-protocol";
+import {Emitter} from "nanoevents";
 
 describe("Testing AuthProtocol", () => {
   describe("Testing instantiation of AuthProtocol", () => {
+
     it("does not instantiate with invalid inputs", () => {
-        throw Error("To be implemented")
+      throw Error("To be implemented")
     });
     it("instantiates valid inputs", () => {
-      throw Error("To be implemented")
+      const schema: IAuthProtocolSchema = {
+
+      }
+      const ap = new AuthProtocol(schema, logic)
     });
   });
   describe("Testing behavior of AuthProtocol", () => {
