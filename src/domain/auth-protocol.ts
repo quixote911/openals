@@ -1,5 +1,5 @@
 import {Schema, Validator} from "jsonschema";
-import {createNanoEvents, Emitter} from "nanoevents";
+import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 
 export interface ISessionStateChangeEvents {
     activated: (newSessionData: unknown) => void;
@@ -96,7 +96,7 @@ export class AuthProtocol {
             this.internalEmitter,
         );
     }
-    public on = <E extends keyof IAuthProtocolEvents>(event: E, callback: IAuthProtocolEvents[E]) => {
+    public on = <E extends keyof IAuthProtocolEvents>(event: E, callback: IAuthProtocolEvents[E]): Unsubscribe => {
         return this.externalEmitter.on(event, callback);
     }
 

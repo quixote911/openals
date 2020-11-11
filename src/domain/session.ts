@@ -1,5 +1,5 @@
 import {AuthProtocol, IAuthProtocolEvents} from "./auth-protocol";
-import {createNanoEvents, Emitter} from "nanoevents";
+import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 
 export interface ISessionRepository {
     save: (session: Session) => Promise<void>;
@@ -71,7 +71,7 @@ export class Session {
         this.externalEmitter.emit("stateChanged", this.sessionState);
     }
 
-    public on = <E extends keyof ISessionEvents>(event: E, callback: ISessionEvents[E]) => {
+    public on = <E extends keyof ISessionEvents>(event: E, callback: ISessionEvents[E]): Unsubscribe => {
         return this.externalEmitter.on(event, callback);
     }
 
@@ -96,7 +96,7 @@ export class Session {
         if (!Object.values(SessionStatus).includes(sessionState.status)) {
             throw Error("Invalid status in sessionState");
         }
-        this.authProtocol.validateSessionVariables(sessionState.sessionVariables);
+        authProtocol.validateSessionVariables(sessionState.sessionVariables);
         authProtocol.validateCredentials(selfCredentials);
         authProtocol.validateSettings(authProtocolSettings);
     }
