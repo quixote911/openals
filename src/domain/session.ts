@@ -64,6 +64,7 @@ export class Session {
         this.authProtocol.on("activated", this.authProtocolEventHandlers.activated);
         this.authProtocol.on("blocked", this.authProtocolEventHandlers.blocked);
         this.authProtocol.on("expired", this.authProtocolEventHandlers.expired);
+        this.externalEmitter.emit("stateChanged", this.sessionState);
     }
 
     public on = <E extends keyof ISessionEvents>(event: E, callback: ISessionEvents[E]) => {
