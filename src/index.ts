@@ -1,8 +1,8 @@
-import {ALSSecureContext} from "./application/als-secure-context";
-import {
-    ICredentialProvider,
-    ISecuritySchemaProvider,
-    ISessionStore
-} from "./infrastructure/session/internet-session-repository/repo";
-import * as impl from "./infrastructure/session/internet-session-repository/impl"
-export { ALSSecureContext, ICredentialProvider, ISessionStore, ISecuritySchemaProvider, impl};
+// import {MinimalSecureContext, GenericSecureContext, AbstractSecureContext} from "./application/secure-context";
+// import {
+//     ICredentialProvider,
+//     ISecuritySchemaProvider,
+//     ISessionStore
+// } from "./infrastructure/session/generic-session-repository/repo";
+// import * as impl from "./infrastructure/session/generic-session-repository/impl"
+// export { SecureContext, ICredentialProvider, ISessionStore, ISecuritySchemaProvider, impl};

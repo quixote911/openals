@@ -3,7 +3,7 @@ import {AuthProtocol, IAuthProtocolBundle} from "../../../domain/auth-protocol";
 import {v4 as uuidv4} from "uuid";
 
 export interface ISecuritySchema {
-    bundle: IAuthProtocolBundle;
+    authType: string;
     settings: unknown;
 }
 
@@ -20,22 +20,28 @@ export interface ICredentialProvider {
     get: (uniqueId: string) => Promise<unknown>
 }
 
-export class InternetSessionRepository implements ISessionRepository {
+export interface IAuthBundleProvider {
+    get: (uniqueId: string) => Promise<IAuthProtocolBundle>
+}
+
+export class GenericSessionRepository implements ISessionRepository {
     private sessionStore: ISessionStore;
     private securitySchemaStore: ISecuritySchemaProvider;
     private credentialProvider: ICredentialProvider;
+    private authBundleProvider: IAuthBundleProvider;
 
-    constructor(credentialProvider: ICredentialProvider, sessionStore: ISessionStore, securitySchemaStore: ISecuritySchemaProvider) {
-        // TODO: Further abstract out the base data structures
+    constructor(credentialProvider: ICredentialProvider, sessionStore: ISessionStore,
+                securitySchemaStore: ISecuritySchemaProvider, authBundleProvider: IAuthBundleProvider) {
         this.credentialProvider = credentialProvider;
         this.sessionStore = sessionStore;
         this.securitySchemaStore = securitySchemaStore;
+        this.authBundleProvider = authBundleProvider;
     }
-
     public getOrCreate = async (uniqueId: string): Promise<Session> => {
         const sessionState = await this.sessionStore.getByCounterpartyId(uniqueId) || this.getInitialSessionState();
         const securitySchema: ISecuritySchema = await this.securitySchemaStore.get(uniqueId);
-        const authProtocol = new AuthProtocol(securitySchema.bundle.authProtocolSchema, securitySchema.bundle.authProtocolLogic)
+        const authBundle: IAuthProtocolBundle = await this.authBundleProvider.get(securitySchema.authType);
+        const authProtocol = new AuthProtocol(authBundle.authProtocolSchema, authBundle.authProtocolLogic)
         const credentials = this.credentialProvider.get(uniqueId);
         return new Session(sessionState, authProtocol, credentials, securitySchema.settings)
     };
