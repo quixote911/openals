@@ -1,10 +1,6 @@
 import {Schema, Validator} from "jsonschema";
 import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 
-export interface IAuthProtocolRepository {
-    getByIdentifier: (identifier: string) => void;
-    // publish: (bundle: IAuthProtocolBundle) => void;
-}
 export interface ISessionStateChangeEvents {
     activated: (newSessionData: unknown) => void;
     expired: () => void;
