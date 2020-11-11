@@ -4,8 +4,8 @@ import {createNanoEvents, Emitter} from "nanoevents";
 export interface ISessionRepository {
     save: (session: Session) => Promise<void>;
     createSessionWith: (counterpartyUniqueId: string) => Promise<Session>;
-    deleteById: (sessionId: any) => Promise<void>;
-    getById: (sessionId: any) => Promise<Session>;
+    deleteById: (sessionId: unknown) => Promise<void>;
+    getById: (sessionId: unknown) => Promise<Session>;
 }
 
 export enum SessionStatus {
@@ -32,7 +32,7 @@ export class Session {
     public readonly sessionState: ISessionState;
     public readonly authProtocol: AuthProtocol;
     private readonly authProtocolEventHandlers: IAuthProtocolEvents = {
-        activated: (newSessionVariables: any) => {
+        activated: (newSessionVariables: unknown) => {
             this.sessionState.sessionVariables = newSessionVariables;
             this.sessionState.status = SessionStatus.ACTIVE;
             this.externalEmitter.emit("stateChanged", this.sessionState);
@@ -75,11 +75,12 @@ export class Session {
         return this.externalEmitter.on(event, callback);
     }
 
-    public processIncoming = async (message: any) => {
+    public processIncoming = async (message: unknown): Promise<unknown> => {
         await this.ensureActive();
         return this.authProtocol.processIncoming(message, this.sessionState.sessionVariables, this.selfCredentials, this.authProtocolSettings);
     }
-    public processOutgoing = async (message: any) => {
+    public processOutgoing = async (message: unknown): Promise<unknown> => {
+        // TODO: Should this return message or modify message in-place?
         await this.ensureActive();
         return this.authProtocol.processOutgoing(message, this.sessionState.sessionVariables, this.selfCredentials, this.authProtocolSettings);
     }
@@ -92,7 +93,6 @@ export class Session {
         }
     }
     private validateSessionInputs = (sessionState: ISessionState, authProtocol: AuthProtocol, selfCredentials: unknown, authProtocolSettings?: unknown) => {
-        // @ts-ignore
         if (!Object.values(SessionStatus).includes(sessionState.status)) {
             throw Error("Invalid status in sessionState");
         }

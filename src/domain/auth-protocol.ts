@@ -51,7 +51,7 @@ export class AuthProtocol {
     private readonly internalEmitter: Emitter<ISessionStateChangeEvents>;
     private readonly externalEmitter: Emitter<IAuthProtocolEvents>;
     private readonly stateChangeEventHandlers: ISessionStateChangeEvents = {
-        activated: (newSessionVariables: any) => {
+        activated: (newSessionVariables: unknown) => {
             try {
                 this.validateSessionVariables(newSessionVariables);
                 this.externalEmitter.emit("activated", newSessionVariables);
@@ -100,13 +100,13 @@ export class AuthProtocol {
         return this.externalEmitter.on(event, callback);
     }
 
-    public validateCredentials = (credentials: unknown) => {
+    public validateCredentials = (credentials: unknown): void => {
         AuthProtocolValidationHelper.validateCredentials(credentials, this.authProtocolSchema.credentialSchema);
     }
-    public validateSettings = (authProtocolSettings: unknown) => {
+    public validateSettings = (authProtocolSettings: unknown): void => {
         AuthProtocolValidationHelper.validateSettings(authProtocolSettings, this.authProtocolSchema.settingsSchema);
     }
-    public validateSessionVariables = (sessionVariables: unknown) => {
+    public validateSessionVariables = (sessionVariables: unknown): void => {
         AuthProtocolValidationHelper.validateSessionVariables(sessionVariables, this.authProtocolSchema.sessionVariablesSchema);
     }
     private getContext = (selfCredentials: unknown, sessionVariables: unknown, authProtocolSettings: unknown): IAuthProtocolContext => {
