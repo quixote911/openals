@@ -22,7 +22,7 @@ export class InMemorySessionStore implements ISessionStore {
     }
 }
 
-abstract class GenericInMemoryProvider<DataType> implements ICredentialProvider{
+abstract class GenericInMemoryProvider<DataType> {
     private readonly storeMapping: Record<string, DataType>;
     constructor(storeMapping: Record<string, DataType>) {
         this.storeMapping = storeMapping;
