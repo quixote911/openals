@@ -23,6 +23,7 @@ export interface ISessionState {
 
 interface ISessionEvents {
     stateChanged: (newState: ISessionState) => void;
+    error: (error: unknown) => void;
 }
 
 export class Session {
@@ -47,7 +48,7 @@ export class Session {
         // tslint:disable-next-line:object-literal-sort-keys
         error: (err: unknown) => {
             // TODO: Define errors properly
-            console.log(err);
+            this.externalEmitter.emit("error", err);
         },
     };
     private readonly authProtocolSettings: unknown;
