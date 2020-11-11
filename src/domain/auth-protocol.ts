@@ -22,10 +22,10 @@ export interface IAuthProtocolContext {
     sessionVariables: unknown;
 }
 
-export interface IAuthProtocolLogic {
+export interface IAuthProtocolLogic<MessageType> {
     ensureActiveSession: (context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>) => Promise<void>;
-    processIncoming: (message: unknown, context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>) => Promise<void>;
-    processOutgoing: (message: unknown, context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>) => Promise<void>;
+    processIncoming: (message: MessageType, context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>) => Promise<MessageType>;
+    processOutgoing: (message: MessageType, context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>) => Promise<MessageType>;
 }
 
 export interface IAuthProtocolSchema {
@@ -35,8 +35,8 @@ export interface IAuthProtocolSchema {
     // TODO: Credentials also have some expected format
 }
 
-export interface IAuthProtocolBundle {
-    authProtocolLogic: IAuthProtocolLogic;
+export interface IAuthProtocolBundle<MessageType> {
+    authProtocolLogic: IAuthProtocolLogic<MessageType>;
     authProtocolSchema: IAuthProtocolSchema;
 }
 
@@ -49,9 +49,9 @@ export interface IAuthProtocolBundle {
  *      defines function which run which run hooks like processIncoming, processOutgoing, ensureActive
  * 3. authProtocolSettings
  */
-export class AuthProtocol {
+export class AuthProtocol<MessageType> {
     public readonly authProtocolSchema: IAuthProtocolSchema;
-    public readonly authProtocolLogic: IAuthProtocolLogic;
+    public readonly authProtocolLogic: IAuthProtocolLogic<MessageType>;
     private readonly internalEmitter: Emitter<ISessionStateChangeEvents>;
     private readonly externalEmitter: Emitter<IAuthProtocolEvents>;
     private readonly stateChangeEventHandlers: ISessionStateChangeEvents = {
@@ -70,7 +70,7 @@ export class AuthProtocol {
             this.externalEmitter.emit("expired");
         },
     };
-    constructor(authProtocolSchema: IAuthProtocolSchema, authProtocolLogic: IAuthProtocolLogic) {
+    constructor(authProtocolSchema: IAuthProtocolSchema, authProtocolLogic: IAuthProtocolLogic<MessageType>) {
         this.validateAuthProtocolInputs(authProtocolSchema, authProtocolLogic);
         this.authProtocolLogic = authProtocolLogic;
         this.authProtocolSchema = authProtocolSchema;
@@ -86,14 +86,14 @@ export class AuthProtocol {
             this.internalEmitter,
         );
     }
-    public processIncoming = async (message: unknown, sessionVariables: unknown, selfCredentials: unknown, authProtocolSettings?: unknown): Promise<unknown> => {
+    public processIncoming = async (message: MessageType, sessionVariables: unknown, selfCredentials: unknown, authProtocolSettings?: unknown): Promise<MessageType> => {
         return this.authProtocolLogic.processIncoming(
             message,
             this.getContext(selfCredentials, sessionVariables, authProtocolSettings),
             this.internalEmitter,
         );
     }
-    public processOutgoing = async (message: unknown, sessionVariables: unknown, selfCredentials: unknown, authProtocolSettings?: unknown): Promise<unknown> => {
+    public processOutgoing = async (message: MessageType, sessionVariables: unknown, selfCredentials: unknown, authProtocolSettings?: unknown): Promise<MessageType> => {
         return this.authProtocolLogic.processOutgoing(
             message,
             this.getContext(selfCredentials, sessionVariables, authProtocolSettings),
@@ -120,7 +120,7 @@ export class AuthProtocol {
         return { authProtocolSettings, selfCredentials, sessionVariables };
     }
 
-    private validateAuthProtocolInputs = (authProtocolSchema: IAuthProtocolSchema, authProtocolLogic: IAuthProtocolLogic) => {
+    private validateAuthProtocolInputs = (authProtocolSchema: IAuthProtocolSchema, authProtocolLogic: IAuthProtocolLogic<MessageType>) => {
         // TODO: Add some kind of validation
         return;
     }
