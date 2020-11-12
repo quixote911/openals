@@ -6,21 +6,32 @@ import {
     IAuthProtocolLogic,
     ISessionStateChangeEvents
 } from "../../domain/auth-protocol";
+import {CoreOptions, Headers} from "request";
 
 // TODO: Implement these types in this bundle
-interface M {}
-interface SV {}
-interface C {}
-interface AS {}
+type M = CoreOptions;
+type SV = void;
+interface C {
+    apiKey: string;
+}
+interface AS {
+    name: string;
+    in: string;
+}
+
 class ApiKeyAuthProtocolLogic implements IAuthProtocolLogic<M,SV,C,AS> {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public ensureActiveSession = async (context: IAuthProtocolContext<SV,C,AS>, emitter: Emitter<ISessionStateChangeEvents<SV>>): Promise<void> => {
         return;
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public processIncoming = async (message: M, context: IAuthProtocolContext<SV,C,AS>, emitter: Emitter<ISessionStateChangeEvents<SV>>): Promise<M> => {
         return message;
     }
     public processOutgoing = async (message: M, context: IAuthProtocolContext<SV,C,AS>, emitter: Emitter<ISessionStateChangeEvents<SV>>): Promise<M> => {
-        message.apiKey = (context.selfCredentials as any).apiKey;
+        const headers: Headers = message.headers ? message.headers : {}
+        headers.apiKey = context.selfCredentials.apiKey;
+        message.headers = headers;
         return message;
     }
 
