@@ -1,9 +1,11 @@
 import {AuthProtocol, IAuthProtocolEvents} from "./auth-protocol";
 import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 
-export interface ISessionRepository<ID,M,SV,C,AS> {
+export type UniqueId = string
+
+export interface ISessionRepository<M,SV,C,AS> {
     // save: (session: Session) => Promise<void>;
-    getOrCreate: (selfUniqueId: ID, counterPartyUniqueId: ID) => Promise<Session<M,SV,C,AS>>;
+    getOrCreate: (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId) => Promise<Session<M,SV,C,AS>>;
     // deleteById: (sessionId: unknown) => Promise<void>;
     // getById: (sessionId: unknown) => Promise<Session>;
 }
