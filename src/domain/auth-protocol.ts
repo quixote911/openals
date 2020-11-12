@@ -80,14 +80,14 @@ export class AuthProtocol<M,SV,C,AS> {
             this.internalEmitter,
         );
     }
-    public processIncoming = async (message: M, sessionVariables: SV, selfCredentials: C, authProtocolSettings?: AS): Promise<M> => {
+    public processIncoming = async (message: M, sessionVariables: SV, selfCredentials: C, authProtocolSettings: AS): Promise<M> => {
         return this.authProtocolLogic.processIncoming(
             message,
             this.getContext(selfCredentials, sessionVariables, authProtocolSettings),
             this.internalEmitter,
         );
     }
-    public processOutgoing = async (message: M, sessionVariables: SV, selfCredentials: C, authProtocolSettings?: AS): Promise<M> => {
+    public processOutgoing = async (message: M, sessionVariables: SV, selfCredentials: C, authProtocolSettings: AS): Promise<M> => {
         return this.authProtocolLogic.processOutgoing(
             message,
             this.getContext(selfCredentials, sessionVariables, authProtocolSettings),

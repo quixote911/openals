@@ -1,9 +1,9 @@
 import {AuthProtocol, IAuthProtocolEvents} from "./auth-protocol";
 import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 
-export interface ISessionRepository {
+export interface ISessionRepository<M,SV,C,AS> {
     // save: (session: Session) => Promise<void>;
-    getOrCreate: (selfUniqueId: string, counterPartyUniqueId: string) => Promise<Session>;
+    getOrCreate: (selfUniqueId: string, counterPartyUniqueId: string) => Promise<Session<M,SV,C,AS>>;
     // deleteById: (sessionId: unknown) => Promise<void>;
     // getById: (sessionId: unknown) => Promise<Session>;
 }
@@ -15,24 +15,24 @@ export enum SessionStatus {
     BLOCKED = "BLOCKED",
 }
 
-export interface ISessionState {
+export interface ISessionState<SV> {
     sessionId: string;
     status: SessionStatus;
-    sessionVariables?: unknown;
+    sessionVariables: SV;
 }
 
-interface ISessionEvents {
-    stateChanged: (newState: ISessionState) => void;
+interface ISessionEvents<SV> {
+    stateChanged: (newState: ISessionState<SV>) => void;
     error: (error: unknown) => void;
 }
 
-export class Session {
+export class Session<M,SV,C,AS> {
     // TODO: [Long term] Right now this works only for client. What about server?
-    public readonly selfCredentials: unknown;
-    public readonly sessionState: ISessionState;
-    public readonly authProtocol: AuthProtocol;
-    private readonly authProtocolEventHandlers: IAuthProtocolEvents = {
-        activated: (newSessionVariables: unknown) => {
+    public readonly selfCredentials: C;
+    public readonly sessionState: ISessionState<SV>;
+    public readonly authProtocol: AuthProtocol<M,SV,C,AS>;
+    private readonly authProtocolEventHandlers: IAuthProtocolEvents<SV> = {
+        activated: (newSessionVariables: SV) => {
             this.sessionState.sessionVariables = newSessionVariables;
             this.sessionState.status = SessionStatus.ACTIVE;
             this.externalEmitter.emit("stateChanged", this.sessionState);
@@ -52,14 +52,14 @@ export class Session {
             this.externalEmitter.emit("error", err);
         },
     };
-    private readonly authProtocolSettings: unknown;
-    private externalEmitter: Emitter<ISessionEvents>;
+    private readonly authProtocolSettings: AS;
+    private externalEmitter: Emitter<ISessionEvents<SV>>;
     private singletonEnsureActivePromise: Promise<void> | undefined;
 
     // TODO: is unknown the right type to use here?
-    constructor(sessionState: ISessionState, authProtocol: AuthProtocol, selfCredentials: unknown, authProtocolSettings?: unknown) {
+    constructor(sessionState: ISessionState<SV>, authProtocol: AuthProtocol<M,SV,C,AS> , selfCredentials: C, authProtocolSettings: AS) {
         this.validateSessionInputs(sessionState, authProtocol, selfCredentials, authProtocolSettings);
-        this.externalEmitter = createNanoEvents<ISessionEvents>();
+        this.externalEmitter = createNanoEvents<ISessionEvents<SV>>();
         this.sessionState = sessionState;
         this.selfCredentials = selfCredentials;
         this.authProtocolSettings = authProtocolSettings;
@@ -71,15 +71,15 @@ export class Session {
         this.externalEmitter.emit("stateChanged", this.sessionState);
     }
 
-    public on = <E extends keyof ISessionEvents>(event: E, callback: ISessionEvents[E]): Unsubscribe => {
+    public on = <E extends keyof ISessionEvents<SV>>(event: E, callback: ISessionEvents<SV>[E]): Unsubscribe => {
         return this.externalEmitter.on(event, callback);
     }
 
-    public processIncoming = async (message: unknown): Promise<unknown> => {
+    public processIncoming = async (message: M): Promise<M> => {
         await this.ensureActive();
         return this.authProtocol.processIncoming(message, this.sessionState.sessionVariables, this.selfCredentials, this.authProtocolSettings);
     }
-    public processOutgoing = async (message: unknown): Promise<unknown> => {
+    public processOutgoing = async (message: M): Promise<M> => {
         // TODO: Should this return message or modify message in-place? MAKE IT CONSISTENT
         await this.ensureActive();
         return this.authProtocol.processOutgoing(message, this.sessionState.sessionVariables, this.selfCredentials, this.authProtocolSettings);
@@ -92,7 +92,7 @@ export class Session {
             return this.singletonEnsureActivePromise;
         }
     }
-    private validateSessionInputs = (sessionState: ISessionState, authProtocol: AuthProtocol, selfCredentials: unknown, authProtocolSettings?: unknown) => {
+    private validateSessionInputs = (sessionState: ISessionState<SV>, authProtocol: AuthProtocol<M,SV,C,AS>, selfCredentials: C, authProtocolSettings: AS) => {
         if (!Object.values(SessionStatus).includes(sessionState.status)) {
             throw Error("Invalid status in sessionState");
         }
