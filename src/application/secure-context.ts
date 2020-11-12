@@ -1,5 +1,9 @@
 import {ISessionRepository, Session, UniqueId} from "../domain/session";
-import {GenericSessionRepository, ISecuritySchema} from "../infrastructure/session/generic-session-repository/repo";
+import {
+    GenericSessionRepository, IAuthBundleProvider,
+    ICredentialProvider,
+    ISecuritySchema, ISecuritySchemaProvider, ISessionStore
+} from "../infrastructure/session/generic-session-repository/repo";
 import {
     InMemoryAuthBundleProvider,
     InMemoryCredentialProvider,
@@ -40,13 +44,13 @@ export class MinimalSecureContext<M,SV,C,AS> extends AbstractSecureContext<M,SV,
     }
 }
 
-// export class GenericSecureContext extends AbstractSecureContext {
-//     constructor(credentialProvider: ICredentialProvider,
-//                 sessionStore: ISessionStore,
-//                 securitySchemaProvider: ISecuritySchemaProvider,
-//                 authBundleProvider: IAuthBundleProvider) {
-//         const sessionRepo = new GenericSessionRepository(credentialProvider, sessionStore, securitySchemaProvider, authBundleProvider);
-//         super(sessionRepo);
-//     }
-// }
+export class GenericSecureContext<M,SV,C,AS> extends AbstractSecureContext<M,SV,C,AS> {
+    constructor(credentialProvider: ICredentialProvider<C>,
+                sessionStore: ISessionStore<SV>,
+                securitySchemaProvider: ISecuritySchemaProvider<AS>,
+                authBundleProvider: IAuthBundleProvider<M,SV,C,AS> ) {
+        const sessionRepo = new GenericSessionRepository(credentialProvider, sessionStore, securitySchemaProvider, authBundleProvider);
+        super(sessionRepo);
+    }
+}
 
