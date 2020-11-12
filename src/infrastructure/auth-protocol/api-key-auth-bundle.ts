@@ -8,7 +8,7 @@ import {
 } from "../../domain/auth-protocol";
 import {CoreOptions, Headers} from "request";
 
-// TODO: Implement these types in this bundle
+
 type M = CoreOptions;
 type SV = void;
 interface C {
