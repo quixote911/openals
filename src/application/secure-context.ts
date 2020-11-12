@@ -12,37 +12,20 @@ import {
 import {IAuthProtocolBundle} from "../domain/auth-protocol";
 
 
-// enum OAIAuthTypes {
-//     apiKey = "apiKey",
-// }
-//
-// const bundleByOAIAuthType = {
-//     [OAIAuthTypes.apiKey]: apiKeyAuthTypeBundle,
-// };
-// const securitySchemaData: {[uniqueId: string]: ISecuritySchema} = {
-//     "coinswitch.co": {
-//         authType: "apiKey",
-//         settings: {
-//             "name": "x-api-key",
-//             "in": "header",
-//         }
-//     }
-// }
-
 export abstract class AbstractSecureContext {
     private sessionRepo: ISessionRepository;
     protected constructor(sessionRepo: ISessionRepository) {
         this.sessionRepo = sessionRepo;
     }
-    public getSession = async (counterpartyId: string): Promise<Session> => {
-        return this.sessionRepo.getOrCreate(counterpartyId);
+    public getSession = async (selfId: string, counterpartyId: string): Promise<Session> => {
+        return this.sessionRepo.getOrCreate(selfId, counterpartyId);
     }
-    public processIncoming = async (senderId: string, message: unknown): Promise<unknown> => {
-        const session: Session = await this.sessionRepo.getOrCreate(senderId)
+    public processIncoming = async (selfId: string, senderId: string, message: unknown): Promise<unknown> => {
+        const session: Session = await this.getSession(selfId, senderId);
         return session.processIncoming(message);
     }
-    public processOutgoing = async (recipientId: string, message: unknown): Promise<unknown> => {
-        const session: Session = await this.sessionRepo.getOrCreate(recipientId)
+    public processOutgoing = async (selfId: string, recipientId: string, message: unknown): Promise<unknown> => {
+        const session: Session = await this.getSession(selfId, recipientId);
         return session.processOutgoing(message);
     }
 }

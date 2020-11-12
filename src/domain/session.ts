@@ -3,7 +3,7 @@ import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 
 export interface ISessionRepository {
     // save: (session: Session) => Promise<void>;
-    getOrCreate: (counterpartyUniqueId: string) => Promise<Session>;
+    getOrCreate: (selfUniqueId: string, counterPartyUniqueId: string) => Promise<Session>;
     // deleteById: (sessionId: unknown) => Promise<void>;
     // getById: (sessionId: unknown) => Promise<Session>;
 }

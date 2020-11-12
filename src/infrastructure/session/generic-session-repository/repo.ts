@@ -37,12 +37,12 @@ export class GenericSessionRepository implements ISessionRepository {
         this.securitySchemaStore = securitySchemaStore;
         this.authBundleProvider = authBundleProvider;
     }
-    public getOrCreate = async (uniqueId: string): Promise<Session> => {
-        const sessionState = await this.sessionStore.getByCounterpartyId(uniqueId) || this.getInitialSessionState();
-        const securitySchema: ISecuritySchema = await this.securitySchemaStore.get(uniqueId);
+    public getOrCreate = async (selfUniqueId: string, counterPartyUniqueId: string): Promise<Session> => {
+        const credentials = this.credentialProvider.get(selfUniqueId);
+        const sessionState = await this.sessionStore.getByCounterpartyId(counterPartyUniqueId) || this.getInitialSessionState();
+        const securitySchema: ISecuritySchema = await this.securitySchemaStore.get(counterPartyUniqueId);
         const authBundle: IAuthProtocolBundle = await this.authBundleProvider.get(securitySchema.authType);
         const authProtocol = new AuthProtocol(authBundle.authProtocolSchema, authBundle.authProtocolLogic)
-        const credentials = this.credentialProvider.get(uniqueId);
         return new Session(sessionState, authProtocol, credentials, securitySchema.settings)
     };
     private getInitialSessionState = (): ISessionState => {
