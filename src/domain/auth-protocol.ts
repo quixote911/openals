@@ -12,6 +12,7 @@ export interface IAuthProtocolEvents<SessionVariablesType> extends ISessionState
 }
 
 export interface IAuthProtocolContext<SessionVariablesType, CredentialsType, AuthSettingsType> {
+    // TODO: Deal with these optional variables in the right way
     authProtocolSettings?: AuthSettingsType;
     selfCredentials: CredentialsType;
     sessionVariables: SessionVariablesType;

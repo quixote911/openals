@@ -7,16 +7,21 @@ import {
     ISessionStateChangeEvents
 } from "../../domain/auth-protocol";
 
-class ApiKeyAuthProtocolLogic implements IAuthProtocolLogic {
-    public ensureActiveSession = async (context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>): Promise<void> => {
+// TODO: Implement these types in this bundle
+interface M {}
+interface SV {}
+interface C {}
+interface AS {}
+class ApiKeyAuthProtocolLogic implements IAuthProtocolLogic<M,SV,C,AS> {
+    public ensureActiveSession = async (context: IAuthProtocolContext<SV,C,AS>, emitter: Emitter<ISessionStateChangeEvents<SV>>): Promise<void> => {
         return;
     }
-    public processIncoming = async (message: unknown, context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>): Promise<void> => {
-        return;
+    public processIncoming = async (message: M, context: IAuthProtocolContext<SV,C,AS>, emitter: Emitter<ISessionStateChangeEvents<SV>>): Promise<M> => {
+        return message;
     }
-    public processOutgoing = async (message: unknown, context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>): Promise<void> => {
-        (message as any).apiKey = (context.selfCredentials as any).apiKey;
-        return;
+    public processOutgoing = async (message: M, context: IAuthProtocolContext<SV,C,AS>, emitter: Emitter<ISessionStateChangeEvents<SV>>): Promise<M> => {
+        message.apiKey = (context.selfCredentials as any).apiKey;
+        return message;
     }
 
 }
@@ -31,7 +36,7 @@ const credentialSchema: Schema = {
     },
 };
 
-const bundle: IAuthProtocolBundle = {
+const bundle: IAuthProtocolBundle<M,SV,C,AS> = {
     authProtocolLogic: new ApiKeyAuthProtocolLogic(),
     authProtocolSchema: { credentialSchema },
 };
