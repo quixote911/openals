@@ -1,26 +1,26 @@
 import {Schema, Validator} from "jsonschema";
 import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 
-export interface ISessionStateChangeEvents {
-    activated: (newSessionData: unknown) => void;
+export interface ISessionStateChangeEvents<SessionVariablesType> {
+    activated: (sessionVariables: SessionVariablesType) => void;
     expired: () => void;
     blocked: () => void;
 }
 
-export interface IAuthProtocolEvents extends ISessionStateChangeEvents {
+export interface IAuthProtocolEvents<SessionVariablesType> extends ISessionStateChangeEvents<SessionVariablesType> {
     error: (err: unknown) => void;
 }
 
-export interface IAuthProtocolContext {
-    authProtocolSettings?: unknown;
-    selfCredentials: unknown;
-    sessionVariables: unknown;
+export interface IAuthProtocolContext<SessionVariablesType, CredentialsType, AuthSettingsType> {
+    authProtocolSettings?: AuthSettingsType;
+    selfCredentials: CredentialsType;
+    sessionVariables: SessionVariablesType;
 }
 
-export interface IAuthProtocolLogic {
-    ensureActiveSession: (context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>) => Promise<void>;
-    processIncoming: (message: unknown, context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>) => Promise<void>;
-    processOutgoing: (message: unknown, context: IAuthProtocolContext, emitter: Emitter<ISessionStateChangeEvents>) => Promise<void>;
+export interface IAuthProtocolLogic<MessageType,SessionVariablesType,CredentialsType,AuthSettingsType> {
+    ensureActiveSession: (context: IAuthProtocolContext<SessionVariablesType, CredentialsType, AuthSettingsType>, emitter: Emitter<ISessionStateChangeEvents<SessionVariablesType>>) => Promise<void>;
+    processIncoming: (message: MessageType, context: IAuthProtocolContext<SessionVariablesType, CredentialsType, AuthSettingsType>, emitter: Emitter<ISessionStateChangeEvents<SessionVariablesType>>) => Promise<MessageType>;
+    processOutgoing: (message: MessageType, context: IAuthProtocolContext<SessionVariablesType, CredentialsType, AuthSettingsType>, emitter: Emitter<ISessionStateChangeEvents<SessionVariablesType>>) => Promise<MessageType>;
 }
 
 export interface IAuthProtocolSchema {
@@ -29,8 +29,8 @@ export interface IAuthProtocolSchema {
     credentialSchema: Schema;
 }
 
-export interface IAuthProtocolBundle {
-    authProtocolLogic: IAuthProtocolLogic;
+export interface IAuthProtocolBundle<MessageType,SessionVariablesType,CredentialsType,AuthSettingsType> {
+    authProtocolLogic: IAuthProtocolLogic<MessageType,SessionVariablesType,CredentialsType,AuthSettingsType>;
     authProtocolSchema: IAuthProtocolSchema;
 }
 
@@ -43,13 +43,13 @@ export interface IAuthProtocolBundle {
  *      defines function which run which run hooks like processIncoming, processOutgoing, ensureActive
  * 3. authProtocolSettings
  */
-export class AuthProtocol {
+export class AuthProtocol<M,SV,C,AS> {
     public readonly authProtocolSchema: IAuthProtocolSchema;
-    public readonly authProtocolLogic: IAuthProtocolLogic;
-    private readonly internalEmitter: Emitter<ISessionStateChangeEvents>;
-    private readonly externalEmitter: Emitter<IAuthProtocolEvents>;
-    private readonly stateChangeEventHandlers: ISessionStateChangeEvents = {
-        activated: (newSessionVariables: unknown) => {
+    public readonly authProtocolLogic: IAuthProtocolLogic<M,SV,C,AS>;
+    private readonly internalEmitter: Emitter<ISessionStateChangeEvents<SV>>;
+    private readonly externalEmitter: Emitter<IAuthProtocolEvents<SV>>;
+    private readonly stateChangeEventHandlers: ISessionStateChangeEvents<SV> = {
+        activated: (newSessionVariables: SV) => {
             try {
                 this.validateSessionVariables(newSessionVariables);
                 this.externalEmitter.emit("activated", newSessionVariables);
@@ -64,57 +64,57 @@ export class AuthProtocol {
             this.externalEmitter.emit("expired");
         },
     };
-    constructor(authProtocolSchema: IAuthProtocolSchema, authProtocolLogic: IAuthProtocolLogic) {
+    constructor(authProtocolSchema: IAuthProtocolSchema, authProtocolLogic: IAuthProtocolLogic<M,SV,C,AS>) {
         this.validateAuthProtocolInputs(authProtocolSchema, authProtocolLogic);
         this.authProtocolLogic = authProtocolLogic;
         this.authProtocolSchema = authProtocolSchema;
-        this.externalEmitter = createNanoEvents<IAuthProtocolEvents>();
-        this.internalEmitter = createNanoEvents<ISessionStateChangeEvents>();
+        this.externalEmitter = createNanoEvents<IAuthProtocolEvents<SV>>();
+        this.internalEmitter = createNanoEvents<ISessionStateChangeEvents<SV>>();
         this.internalEmitter.on("activated", this.stateChangeEventHandlers.activated);
         this.internalEmitter.on("blocked", this.stateChangeEventHandlers.blocked);
         this.internalEmitter.on("expired", this.stateChangeEventHandlers.expired);
     }
-    public ensureActiveSession = async (sessionVariables: unknown, selfCredentials: unknown, authProtocolSettings?: unknown): Promise<void> => {
+    public ensureActiveSession = async (sessionVariables: SV, selfCredentials: C, authProtocolSettings?: AS): Promise<void> => {
         await this.authProtocolLogic.ensureActiveSession(
             this.getContext(selfCredentials, sessionVariables, authProtocolSettings),
             this.internalEmitter,
         );
     }
-    public processIncoming = async (message: unknown, sessionVariables: unknown, selfCredentials: unknown, authProtocolSettings?: unknown): Promise<unknown> => {
+    public processIncoming = async (message: M, sessionVariables: SV, selfCredentials: C, authProtocolSettings?: AS): Promise<M> => {
         return this.authProtocolLogic.processIncoming(
             message,
             this.getContext(selfCredentials, sessionVariables, authProtocolSettings),
             this.internalEmitter,
         );
     }
-    public processOutgoing = async (message: unknown, sessionVariables: unknown, selfCredentials: unknown, authProtocolSettings?: unknown): Promise<unknown> => {
+    public processOutgoing = async (message: M, sessionVariables: SV, selfCredentials: C, authProtocolSettings?: AS): Promise<M> => {
         return this.authProtocolLogic.processOutgoing(
             message,
             this.getContext(selfCredentials, sessionVariables, authProtocolSettings),
             this.internalEmitter,
         );
     }
-    public on = <E extends keyof IAuthProtocolEvents>(event: E, callback: IAuthProtocolEvents[E]): Unsubscribe => {
+    public on = <E extends keyof IAuthProtocolEvents<SV>>(event: E, callback: IAuthProtocolEvents<SV>[E]): Unsubscribe => {
         return this.externalEmitter.on(event, callback);
     }
 
-    public validateCredentials = (credentials: unknown): void => {
+    public validateCredentials = (credentials: C): void => {
         AuthProtocolValidationHelper.validateCredentials(credentials, this.authProtocolSchema.credentialSchema);
     }
-    public validateSettings = (authProtocolSettings: unknown): void => {
+    public validateSettings = (authProtocolSettings?: AS): void => {
         AuthProtocolValidationHelper.validateSettings(authProtocolSettings, this.authProtocolSchema.settingsSchema);
     }
-    public validateSessionVariables = (sessionVariables: unknown): void => {
+    public validateSessionVariables = (sessionVariables: SV): void => {
         AuthProtocolValidationHelper.validateSessionVariables(sessionVariables, this.authProtocolSchema.sessionVariablesSchema);
     }
-    private getContext = (selfCredentials: unknown, sessionVariables: unknown, authProtocolSettings: unknown): IAuthProtocolContext => {
+    private getContext = (selfCredentials: C, sessionVariables: SV, authProtocolSettings?: AS): IAuthProtocolContext<SV,C,AS> => {
         this.validateCredentials(selfCredentials);
         this.validateSettings(authProtocolSettings);
         this.validateSessionVariables(sessionVariables);
         return { authProtocolSettings, selfCredentials, sessionVariables };
     }
 
-    private validateAuthProtocolInputs = (authProtocolSchema: IAuthProtocolSchema, authProtocolLogic: IAuthProtocolLogic) => {
+    private validateAuthProtocolInputs = (authProtocolSchema: IAuthProtocolSchema, authProtocolLogic: IAuthProtocolLogic<M,SV,C,AS>) => {
         // TODO: Add some kind of validation
         return;
     }
