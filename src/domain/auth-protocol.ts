@@ -10,7 +10,6 @@ export interface ISessionStateChangeEvents {
 export interface IAuthProtocolEvents extends ISessionStateChangeEvents {
     error: (err: unknown) => void;
 }
-// TODO: Do we need 2 event interfaces really?
 
 export interface IAuthProtocolContext {
     authProtocolSettings?: unknown;
@@ -28,7 +27,6 @@ export interface IAuthProtocolSchema {
     settingsSchema?: Schema;
     sessionVariablesSchema?: Schema;
     credentialSchema: Schema;
-    // TODO: Credentials also have some expected format
 }
 
 export interface IAuthProtocolBundle {

@@ -1,6 +1,6 @@
 import {ISessionRepository, ISessionState, Session, SessionStatus} from "../../../domain/session";
 import {AuthProtocol, IAuthProtocolBundle} from "../../../domain/auth-protocol";
-import {v4 as uuidv4} from "uuid";
+import {stringify, v4 as uuidv4} from "uuid";
 
 export interface ISecuritySchema {
     authType: string;
@@ -51,10 +51,12 @@ export class GenericSessionRepository implements ISessionRepository {
             throw new Error("Cannot find authbundle for authtype specified in securityschema")
         }
         const sessionState = await this.sessionStore.getByCounterpartyId(counterPartyUniqueId) || this.getInitialSessionState();
+        // TODO: Write test cases and fix code for proper state recovery from serialized session
         const authProtocol = new AuthProtocol(authBundle.authProtocolSchema, authBundle.authProtocolLogic)
         return new Session(sessionState, authProtocol, credentials, securitySchema.settings)
     };
     private getInitialSessionState = (): ISessionState => {
+        // TODO: Add AuthType to sessionstate so that entire session state can be recovered
         return {
             sessionId: uuidv4(),
             status: SessionStatus.INIT

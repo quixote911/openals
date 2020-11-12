@@ -56,7 +56,7 @@ export class Session {
     private externalEmitter: Emitter<ISessionEvents>;
     private singletonEnsureActivePromise: Promise<void> | undefined;
 
-    // TODO: unknown vs object as type here?
+    // TODO: is unknown the right type to use here?
     constructor(sessionState: ISessionState, authProtocol: AuthProtocol, selfCredentials: unknown, authProtocolSettings?: unknown) {
         this.validateSessionInputs(sessionState, authProtocol, selfCredentials, authProtocolSettings);
         this.externalEmitter = createNanoEvents<ISessionEvents>();
@@ -80,7 +80,7 @@ export class Session {
         return this.authProtocol.processIncoming(message, this.sessionState.sessionVariables, this.selfCredentials, this.authProtocolSettings);
     }
     public processOutgoing = async (message: unknown): Promise<unknown> => {
-        // TODO: Should this return message or modify message in-place?
+        // TODO: Should this return message or modify message in-place? MAKE IT CONSISTENT
         await this.ensureActive();
         return this.authProtocol.processOutgoing(message, this.sessionState.sessionVariables, this.selfCredentials, this.authProtocolSettings);
     }
