@@ -21,7 +21,7 @@ export interface ICredentialProvider {
 }
 
 export interface IAuthBundleProvider {
-    get: (uniqueId: string) => Promise<IAuthProtocolBundle>
+    get: (authType: string) => Promise<IAuthProtocolBundle>
 }
 
 export class GenericSessionRepository implements ISessionRepository {

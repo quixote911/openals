@@ -33,12 +33,12 @@ abstract class GenericInMemoryProvider<DataType> {
 }
 
 
-export class InMemoryCredentialProvider extends GenericInMemoryProvider<unknown> {
+export class InMemoryCredentialProvider extends GenericInMemoryProvider<unknown> implements ICredentialProvider{
 }
 
-export class InMemorySecuritySchemaProvider extends GenericInMemoryProvider<ISecuritySchema> {
+export class InMemorySecuritySchemaProvider extends GenericInMemoryProvider<ISecuritySchema> implements ISecuritySchemaProvider{
 }
 
-export class InMemoryAuthBundleProvider extends GenericInMemoryProvider<IAuthProtocolBundle> {
+export class InMemoryAuthBundleProvider extends GenericInMemoryProvider<IAuthProtocolBundle> implements IAuthBundleProvider{
 }
 
