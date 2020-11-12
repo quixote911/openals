@@ -39,9 +39,18 @@ export class GenericSessionRepository implements ISessionRepository {
     }
     public getOrCreate = async (selfUniqueId: string, counterPartyUniqueId: string): Promise<Session> => {
         const credentials = this.credentialProvider.get(selfUniqueId);
-        const sessionState = await this.sessionStore.getByCounterpartyId(counterPartyUniqueId) || this.getInitialSessionState();
+        if (!credentials) {
+            throw new Error("Cannot find credentials for provided selfUniqueId")
+        }
         const securitySchema: ISecuritySchema = await this.securitySchemaStore.get(counterPartyUniqueId);
+        if (!securitySchema) {
+            throw new Error("Cannot find securitySchema for provided counterPartyUniqueId")
+        }
         const authBundle: IAuthProtocolBundle = await this.authBundleProvider.get(securitySchema.authType);
+        if (!authBundle) {
+            throw new Error("Cannot find authbundle for authtype specified in securityschema")
+        }
+        const sessionState = await this.sessionStore.getByCounterpartyId(counterPartyUniqueId) || this.getInitialSessionState();
         const authProtocol = new AuthProtocol(authBundle.authProtocolSchema, authBundle.authProtocolLogic)
         return new Session(sessionState, authProtocol, credentials, securitySchema.settings)
     };
