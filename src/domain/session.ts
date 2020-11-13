@@ -4,7 +4,7 @@ import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 export type UniqueId = string
 
 export interface ISessionRepository<M,SV,C,AS> {
-    // save: (session: Session) => Promise<void>;
+    save: (session: Session<M,SV,C,AS>) => Promise<void>;
     getOrCreate: (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId) => Promise<Session<M,SV,C,AS>>;
     // deleteById: (sessionId: unknown) => Promise<void>;
     // getById: (sessionId: unknown) => Promise<Session>;
@@ -20,10 +20,10 @@ export enum SessionStatus {
 export interface ISessionState<SV> {
     sessionId: string;
     status: SessionStatus;
-    sessionVariables: SV;
+    sessionVariables?: SV;
 }
 
-interface ISessionEvents<SV> {
+export interface ISessionEvents<SV> {
     stateChanged: (newState: ISessionState<SV>) => void;
     error: (error: unknown) => void;
 }

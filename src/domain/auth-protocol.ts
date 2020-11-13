@@ -15,7 +15,7 @@ export interface IAuthProtocolContext<SessionVariablesType, CredentialsType, Aut
     // TODO: Deal with these optional variables in the right way
     authProtocolSettings?: AuthSettingsType;
     selfCredentials: CredentialsType;
-    sessionVariables: SessionVariablesType;
+    sessionVariables?: SessionVariablesType;
 }
 
 export interface IAuthProtocolLogic<MessageType,SessionVariablesType,CredentialsType,AuthSettingsType> {
@@ -75,20 +75,20 @@ export class AuthProtocol<M,SV,C,AS> {
         this.internalEmitter.on("blocked", this.stateChangeEventHandlers.blocked);
         this.internalEmitter.on("expired", this.stateChangeEventHandlers.expired);
     }
-    public ensureActiveSession = async (sessionVariables: SV, selfCredentials: C, authProtocolSettings?: AS): Promise<void> => {
+    public ensureActiveSession = async (sessionVariables: SV|undefined, selfCredentials: C, authProtocolSettings?: AS): Promise<void> => {
         await this.authProtocolLogic.ensureActiveSession(
             this.getContext(selfCredentials, sessionVariables, authProtocolSettings),
             this.internalEmitter,
         );
     }
-    public processIncoming = async (message: M, sessionVariables: SV, selfCredentials: C, authProtocolSettings: AS): Promise<M> => {
+    public processIncoming = async (message: M, sessionVariables: SV|undefined, selfCredentials: C, authProtocolSettings: AS): Promise<M> => {
         return this.authProtocolLogic.processIncoming(
             message,
             this.getContext(selfCredentials, sessionVariables, authProtocolSettings),
             this.internalEmitter,
         );
     }
-    public processOutgoing = async (message: M, sessionVariables: SV, selfCredentials: C, authProtocolSettings: AS): Promise<M> => {
+    public processOutgoing = async (message: M, sessionVariables: SV|undefined, selfCredentials: C, authProtocolSettings: AS): Promise<M> => {
         return this.authProtocolLogic.processOutgoing(
             message,
             this.getContext(selfCredentials, sessionVariables, authProtocolSettings),
@@ -105,10 +105,10 @@ export class AuthProtocol<M,SV,C,AS> {
     public validateSettings = (authProtocolSettings?: AS): void => {
         AuthProtocolValidationHelper.validateSettings(authProtocolSettings, this.authProtocolSchema.settingsSchema);
     }
-    public validateSessionVariables = (sessionVariables: SV): void => {
+    public validateSessionVariables = (sessionVariables: SV|undefined): void => {
         AuthProtocolValidationHelper.validateSessionVariables(sessionVariables, this.authProtocolSchema.sessionVariablesSchema);
     }
-    private getContext = (selfCredentials: C, sessionVariables: SV, authProtocolSettings?: AS): IAuthProtocolContext<SV,C,AS> => {
+    private getContext = (selfCredentials: C, sessionVariables: SV|undefined, authProtocolSettings?: AS): IAuthProtocolContext<SV,C,AS> => {
         this.validateCredentials(selfCredentials);
         this.validateSettings(authProtocolSettings);
         this.validateSessionVariables(sessionVariables);

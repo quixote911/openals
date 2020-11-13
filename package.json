@@ -55,6 +55,7 @@
     "nanoevents": "^5.1.10",
     "uuid": "^8.3.1",
     "request": "^2.88.2",
-    "@types/request": "^2.48.5"
+    "@types/request": "^2.48.5",
+    "postman-collection": "*"
   }
 }

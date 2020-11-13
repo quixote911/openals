@@ -7,6 +7,7 @@ import {
     InMemorySessionStore
 } from "../infrastructure/session/generic-session-repository/impl";
 import {IAuthBundleProvider} from "../infrastructure/session/generic-session-repository/repo";
+import {ISessionState} from "../domain/session";
 
 describe("Testing  Secure Context", () => {
     describe("Testing Generic Secure Context", () => {
@@ -50,7 +51,11 @@ describe("Testing  Secure Context", () => {
                 securitySchemaProvider,
                 authBundleProvider
             );
-            const session = await secureContext.getSession("localhost", "coinswitch.co")
+            // const session = await secureContext.getSession("localhost", "coinswitch.co")
+            // session.on("stateChanged", (sessionState: ISessionState) => {
+            //     secureContext.
+            // })
+            // const newMessage = session.processOutgoing(message);
         });
     });
     describe("Testing Minimal Secure Context", () => {

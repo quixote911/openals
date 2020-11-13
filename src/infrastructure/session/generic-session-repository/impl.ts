@@ -14,12 +14,12 @@ export class InMemorySessionStore<SV> implements ISessionStore<SV> {
     constructor() {
         this.store = {};
     }
-    public getByCounterpartyId = async (counterpartyId: UniqueId): Promise<ISessionState<SV>> => {
-        return this.store[counterpartyId];
-    };
-    public save = async (uniqueId: UniqueId, sessionState: ISessionState<SV>): Promise<void> => {
-        this.store[uniqueId] = sessionState;
+    public save = async (sessionState: ISessionState<SV>): Promise<void> => {
+        this.store[sessionState.sessionId] = sessionState;
     }
+    public getBySessionId = async (sessionId: UniqueId): Promise<ISessionState<SV>> => {
+        return this.store[sessionId];
+    };
 }
 
 abstract class GenericInMemoryProvider<DataType> {

@@ -29,6 +29,7 @@ class ApiKeyAuthProtocolLogic implements IAuthProtocolLogic<M,SV,C,AS> {
         return message;
     }
     public processOutgoing = async (message: M, context: IAuthProtocolContext<SV,C,AS>, emitter: Emitter<ISessionStateChangeEvents<SV>>): Promise<M> => {
+        // respect the settings specified by context.authProtocolSettings
         const headers: Headers = message.headers ? message.headers : {}
         headers.apiKey = context.selfCredentials.apiKey;
         message.headers = headers;

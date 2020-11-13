@@ -8,8 +8,8 @@ export interface ISecuritySchema<AS> {
 }
 
 export interface ISessionStore<SV> {
-    save: (counterpartyId: UniqueId, sessionState: ISessionState<SV>) => Promise<void>;
-    getByCounterpartyId: (counterpartyId: UniqueId) => Promise<ISessionState<SV>>
+    save: (sessionState: ISessionState<SV>) => Promise<void>;
+    getBySessionId: (sessionId: UniqueId) => Promise<ISessionState<SV>>
 }
 
 export interface ISecuritySchemaProvider<AS> {
@@ -39,6 +39,9 @@ export class GenericSessionRepository<M,SV,C,AS> implements ISessionRepository<M
         this.securitySchemaStore = securitySchemaStore;
         this.authBundleProvider = authBundleProvider;
     }
+    public save = async (session: Session<M,SV,C,AS>): Promise<void> => {
+        return this.sessionStore.save(session.sessionState)
+    }
     public getOrCreate = async (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId): Promise<Session<M,SV,C,AS>> => {
         const credentials: C = await this.credentialProvider.get(selfUniqueId);
         if (!credentials) {
@@ -52,17 +55,23 @@ export class GenericSessionRepository<M,SV,C,AS> implements ISessionRepository<M
         if (!authBundle) {
             throw new Error("Cannot find authbundle for authtype specified in securityschema")
         }
-        const sessionState = await this.sessionStore.getByCounterpartyId(counterPartyUniqueId) || this.getInitialSessionState();
+        // const sessionState = await this.sessionStore.getByCounterpartyId(counterPartyUniqueId) || this.getInitialSessionState();
+        const existingSessionState = await this.sessionStore.getBySessionId(this.getSessionId(selfUniqueId, counterPartyUniqueId));
+        const sessionState = existingSessionState ? existingSessionState : this.getInitialSessionState(selfUniqueId, counterPartyUniqueId)
         // TODO: Write test cases and fix code for proper state recovery from serialized session
         const authProtocol = new AuthProtocol(authBundle.authProtocolSchema, authBundle.authProtocolLogic)
         return new Session(sessionState, authProtocol, credentials, securitySchema.settings)
     };
-    private getInitialSessionState = (): ISessionState<SV> => {
+    private getSessionId = (selfUniqueId: UniqueId, counterpartyUniqueId: UniqueId): UniqueId => {
+        return selfUniqueId+counterpartyUniqueId;
+    }
+    private getInitialSessionState = (selfUniqueId: UniqueId, counterpartyUniqueId: UniqueId): ISessionState<SV> => {
         // TODO: Add AuthType to sessionstate so that entire session state can be recovered
         return {
-            sessionId: uuidv4(),
-            status: SessionStatus.INIT
-        } as ISessionState<SV>
+            sessionId: this.getSessionId(selfUniqueId, counterpartyUniqueId),
+            status: SessionStatus.INIT,
+        }
+        // TODO: shouldn't need to cast this!
     }
 
 }
