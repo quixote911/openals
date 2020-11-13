@@ -3,9 +3,9 @@ import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 
 export type UniqueId = string
 
-export interface ISessionRepository<M,SV,C,AS> {
-    save: (session: Session<M,SV,C,AS>) => Promise<void>;
-    get: (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId) => Promise<Session<M,SV,C,AS>>;
+export interface ISessionRepository {
+    save: <M,SV,C,AS> (session: Session<M,SV,C,AS>) => Promise<void>;
+    get: <M,SV,C,AS> (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId) => Promise<Session<M,SV,C,AS>>;
     // deleteById: (sessionId: unknown) => Promise<void>;
     // getById: (sessionId: unknown) => Promise<Session>;
 }

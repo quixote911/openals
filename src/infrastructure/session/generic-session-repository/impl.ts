@@ -9,36 +9,36 @@ import {ISessionState, UniqueId} from "../../../domain/session";
 import {IAuthProtocolBundle} from "../../../domain/auth-protocol";
 
 
-export class InMemorySessionStore<SV> implements ISessionStore<SV> {
-    private readonly store: Record<UniqueId, ISessionState<SV>>;
+export class InMemorySessionStore implements ISessionStore {
+    private readonly store: Record<UniqueId, ISessionState<unknown>>;
     constructor() {
         this.store = {};
     }
-    public save = async (sessionState: ISessionState<SV>): Promise<void> => {
+    public save = async <SV>(sessionState: ISessionState<SV>): Promise<void> => {
         this.store[sessionState.sessionId] = sessionState;
     }
-    public getBySessionId = async (sessionId: UniqueId): Promise<ISessionState<SV>> => {
-        return this.store[sessionId];
+    public getBySessionId = async <SV>(sessionId: UniqueId): Promise<ISessionState<SV>> => {
+        return this.store[sessionId] as ISessionState<SV>;
     };
 }
 
-abstract class GenericInMemoryProvider<DataType> {
-    private readonly storeMapping: Record<UniqueId, DataType>;
-    constructor(storeMapping: Record<UniqueId, DataType>) {
+abstract class GenericInMemoryProvider {
+    private readonly storeMapping: Record<UniqueId, unknown>;
+    constructor(storeMapping: Record<UniqueId, unknown>) {
         this.storeMapping = storeMapping;
     }
-    public get = async (uniqueId: UniqueId): Promise<DataType> => {
-        return this.storeMapping[uniqueId];
+    public get = async <C> (uniqueId: UniqueId): Promise<C> => {
+        return this.storeMapping[uniqueId] as C;
     };
 }
 
 // TODO: Are generics really in the right place? Credentials can be any type actually. only while getting the credentials we know what type they will be.
-export class InMemoryCredentialProvider<C> extends GenericInMemoryProvider<C> implements ICredentialProvider<C>{
+export class InMemoryCredentialProvider extends GenericInMemoryProvider implements ICredentialProvider{
 }
 
-export class InMemorySecuritySchemaProvider<AS> extends GenericInMemoryProvider<ISecuritySchema<AS>> implements ISecuritySchemaProvider<AS>{
+export class InMemorySecuritySchemaProvider extends GenericInMemoryProvider implements ISecuritySchemaProvider{
 }
 
-export class InMemoryAuthBundleProvider<M,SV,C,AS> extends GenericInMemoryProvider<IAuthProtocolBundle<M,SV,C,AS>> implements IAuthBundleProvider<M,SV,C,AS>{
+export class InMemoryAuthBundleProvider extends GenericInMemoryProvider implements IAuthBundleProvider{
 }
 
