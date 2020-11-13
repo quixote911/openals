@@ -2,13 +2,13 @@ import {ISessionRepository, Session, UniqueId} from "../domain/session";
 import {
     GenericSessionRepository, IAuthBundleProvider,
     ICredentialProvider,
-    ISecuritySchema, ISecuritySchemaProvider, ISessionStore
+    ISecuritySchema, ISecuritySchemaProvider, ISessionStore,
 } from "../infrastructure/session/generic-session-repository/repo";
 import {
     InMemoryAuthBundleProvider,
     InMemoryCredentialProvider,
     InMemorySecuritySchemaProvider,
-    InMemorySessionStore
+    InMemorySessionStore,
 } from "../infrastructure/session/generic-session-repository/impl";
 import {IAuthProtocolBundle} from "../domain/auth-protocol";
 
@@ -35,11 +35,11 @@ export class MinimalSecureContext<M,SV,C,AS> extends AbstractSecureContext<M,SV,
     constructor(credentialMapping: Record<UniqueId, C>,
                 authBundleMapping: Record<UniqueId, IAuthProtocolBundle<M,SV,C,AS>>,
                 securitySchemaMapping: Record<UniqueId, ISecuritySchema<AS>>) {
-        const sessionStore = new InMemorySessionStore();
-        const credentialProvider = new InMemoryCredentialProvider(credentialMapping);
-        const securitySchemaProvider = new InMemorySecuritySchemaProvider(securitySchemaMapping);
-        const authBundleProvider = new InMemoryAuthBundleProvider(authBundleMapping)
-        const sessionRepo = new GenericSessionRepository(credentialProvider, sessionStore, securitySchemaProvider, authBundleProvider);
+        const sessionStore = new InMemorySessionStore<SV>();
+        const credentialProvider = new InMemoryCredentialProvider<C>(credentialMapping);
+        const securitySchemaProvider = new InMemorySecuritySchemaProvider<AS>(securitySchemaMapping);
+        const authBundleProvider: IAuthBundleProvider<M,SV,C,AS> = new InMemoryAuthBundleProvider(authBundleMapping)
+        const sessionRepo = new GenericSessionRepository<M,SV,C,AS>(credentialProvider, sessionStore, securitySchemaProvider, authBundleProvider);
         super(sessionRepo);
     }
 }

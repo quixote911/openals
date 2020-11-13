@@ -24,6 +24,8 @@ export interface IAuthBundleProvider<M,SV,C,AS> {
     get: (authType: UniqueId) => Promise<IAuthProtocolBundle<M,SV,C,AS>>
 }
 
+
+
 export class GenericSessionRepository<M,SV,C,AS> implements ISessionRepository<M,SV,C,AS> {
     private sessionStore: ISessionStore<SV>;
     private securitySchemaStore: ISecuritySchemaProvider<AS>;
