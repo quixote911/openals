@@ -62,7 +62,7 @@
 					<a href="_application_secure_context_.genericsecurecontext.html">GenericSecureContext</a>
 				</li>
 			</ul>
-			<h1>Class GenericSecureContext&lt;M, SV, C, AS&gt;</h1>
+			<h1>Class GenericSecureContext&lt;M&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -75,22 +75,13 @@
 					<li>
 						<h4>M</h4>
 					</li>
-					<li>
-						<h4>SV</h4>
-					</li>
-					<li>
-						<h4>C</h4>
-					</li>
-					<li>
-						<h4>AS</h4>
-					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_application_secure_context_.abstractsecurecontext.html" class="tsd-signature-type">AbstractSecureContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span>
+						<a href="_application_secure_context_.abstractsecurecontext.html" class="tsd-signature-type">AbstractSecureContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">GenericSecureContext</span>
@@ -112,9 +103,10 @@
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_application_secure_context_.genericsecurecontext.html#getsession" class="tsd-kind-icon">get<wbr>Session</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_application_secure_context_.genericsecurecontext.html#on" class="tsd-kind-icon">on</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_application_secure_context_.genericsecurecontext.html#processincoming" class="tsd-kind-icon">process<wbr>Incoming</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_application_secure_context_.genericsecurecontext.html#processoutgoing" class="tsd-kind-icon">process<wbr>Outgoing</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_application_secure_context_.genericsecurecontext.html#processincoming" class="tsd-kind-icon">process<wbr>Incoming</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_application_secure_context_.genericsecurecontext.html#processoutgoing" class="tsd-kind-icon">process<wbr>Outgoing</a></li>
 							</ul>
 						</section>
 					</div>
@@ -126,29 +118,29 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Generic<wbr>Secure<wbr>Context<span class="tsd-signature-symbol">(</span>credentialProvider<span class="tsd-signature-symbol">: </span><a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.icredentialprovider.html" class="tsd-signature-type">ICredentialProvider</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span>, sessionStore<span class="tsd-signature-symbol">: </span><a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.isessionstore.html" class="tsd-signature-type">ISessionStore</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span>, securitySchemaProvider<span class="tsd-signature-symbol">: </span><a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.isecurityschemaprovider.html" class="tsd-signature-type">ISecuritySchemaProvider</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span>, authBundleProvider<span class="tsd-signature-symbol">: </span><a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.iauthbundleprovider.html" class="tsd-signature-type">IAuthBundleProvider</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_application_secure_context_.genericsecurecontext.html" class="tsd-signature-type">GenericSecureContext</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Generic<wbr>Secure<wbr>Context<span class="tsd-signature-symbol">(</span>credentialProvider<span class="tsd-signature-symbol">: </span><a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.icredentialprovider.html" class="tsd-signature-type">ICredentialProvider</a>, sessionStore<span class="tsd-signature-symbol">: </span><a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.isessionstore.html" class="tsd-signature-type">ISessionStore</a>, securitySchemaProvider<span class="tsd-signature-symbol">: </span><a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.isecurityschemaprovider.html" class="tsd-signature-type">ISecuritySchemaProvider</a>, authBundleProvider<span class="tsd-signature-symbol">: </span><a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.iauthbundleprovider.html" class="tsd-signature-type">IAuthBundleProvider</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_application_secure_context_.genericsecurecontext.html" class="tsd-signature-type">GenericSecureContext</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_application_secure_context_.abstractsecurecontext.html">AbstractSecureContext</a>.<a href="_application_secure_context_.abstractsecurecontext.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/quixote911/openals/blob/26234fc/src/application/secure-context.ts#L66">application/secure-context.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/ac36379/src/application/secure-context.ts#L55">application/secure-context.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>credentialProvider: <a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.icredentialprovider.html" class="tsd-signature-type">ICredentialProvider</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>credentialProvider: <a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.icredentialprovider.html" class="tsd-signature-type">ICredentialProvider</a></h5>
 								</li>
 								<li>
-									<h5>sessionStore: <a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.isessionstore.html" class="tsd-signature-type">ISessionStore</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>sessionStore: <a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.isessionstore.html" class="tsd-signature-type">ISessionStore</a></h5>
 								</li>
 								<li>
-									<h5>securitySchemaProvider: <a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.isecurityschemaprovider.html" class="tsd-signature-type">ISecuritySchemaProvider</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>securitySchemaProvider: <a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.isecurityschemaprovider.html" class="tsd-signature-type">ISecuritySchemaProvider</a></h5>
 								</li>
 								<li>
-									<h5>authBundleProvider: <a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.iauthbundleprovider.html" class="tsd-signature-type">IAuthBundleProvider</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>authBundleProvider: <a href="../interfaces/_infrastructure_session_generic_session_repository_repo_.iauthbundleprovider.html" class="tsd-signature-type">IAuthBundleProvider</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_application_secure_context_.genericsecurecontext.html" class="tsd-signature-type">GenericSecureContext</a></h4>
@@ -159,23 +151,62 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+					<a name="getsession" class="tsd-anchor"></a>
+					<h3>get<wbr>Session</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Session&lt;SV, C, AS&gt;<span class="tsd-signature-symbol">(</span>selfId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a>, counterpartyId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_domain_session_.session.html" class="tsd-signature-type">Session</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_application_secure_context_.abstractsecurecontext.html">AbstractSecureContext</a>.<a href="_application_secure_context_.abstractsecurecontext.html#getsession">getSession</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/ac36379/src/application/secure-context.ts#L38">application/secure-context.ts:38</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>SV</h4>
+								</li>
+								<li>
+									<h4>C</h4>
+								</li>
+								<li>
+									<h4>AS</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>selfId: <a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a></h5>
+								</li>
+								<li>
+									<h5>counterpartyId: <a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_domain_session_.session.html" class="tsd-signature-type">Session</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 					<a name="on" class="tsd-anchor"></a>
 					<h3>on</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">on&lt;E&gt;<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">E</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISessionEvents</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Unsubscribe</span></li>
+						<li class="tsd-signature tsd-kind-icon">on&lt;E&gt;<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">E</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISessionEvents</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Unsubscribe</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_application_secure_context_.abstractsecurecontext.html">AbstractSecureContext</a>.<a href="_application_secure_context_.abstractsecurecontext.html#on">on</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/quixote911/openals/blob/26234fc/src/application/secure-context.ts#L40">application/secure-context.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/ac36379/src/application/secure-context.ts#L35">application/secure-context.ts:35</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>E<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><a href="../interfaces/_domain_session_.isessionevents.html" class="tsd-signature-type">ISessionEvents</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									<h4>E<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><a href="../interfaces/_domain_session_.isessionevents.html" class="tsd-signature-type">ISessionEvents</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -184,27 +215,39 @@
 									<h5>event: <span class="tsd-signature-type">E</span></h5>
 								</li>
 								<li>
-									<h5>callback: <span class="tsd-signature-type">ISessionEvents</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">]</span></h5>
+									<h5>callback: <span class="tsd-signature-type">ISessionEvents</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Unsubscribe</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 					<a name="processincoming" class="tsd-anchor"></a>
 					<h3>process<wbr>Incoming</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">process<wbr>Incoming<span class="tsd-signature-symbol">(</span>selfId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a>, senderId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Incoming&lt;SV, C, AS&gt;<span class="tsd-signature-symbol">(</span>selfId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a>, senderId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_application_secure_context_.abstractsecurecontext.html">AbstractSecureContext</a>.<a href="_application_secure_context_.abstractsecurecontext.html#processincoming">processIncoming</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/quixote911/openals/blob/26234fc/src/application/secure-context.ts#L43">application/secure-context.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/ac36379/src/application/secure-context.ts#L43">application/secure-context.ts:43</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>SV</h4>
+								</li>
+								<li>
+									<h4>C</h4>
+								</li>
+								<li>
+									<h4>AS</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -221,20 +264,32 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 					<a name="processoutgoing" class="tsd-anchor"></a>
 					<h3>process<wbr>Outgoing</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">process<wbr>Outgoing<span class="tsd-signature-symbol">(</span>selfId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a>, recipientId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Outgoing&lt;SV, C, AS&gt;<span class="tsd-signature-symbol">(</span>selfId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a>, recipientId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_application_secure_context_.abstractsecurecontext.html">AbstractSecureContext</a>.<a href="_application_secure_context_.abstractsecurecontext.html#processoutgoing">processOutgoing</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/quixote911/openals/blob/26234fc/src/application/secure-context.ts#L47">application/secure-context.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/ac36379/src/application/secure-context.ts#L47">application/secure-context.ts:47</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>SV</h4>
+								</li>
+								<li>
+									<h4>C</h4>
+								</li>
+								<li>
+									<h4>AS</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -293,21 +348,21 @@
 								<a href="_application_secure_context_.genericsecurecontext.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+								<a href="_application_secure_context_.genericsecurecontext.html#getsession" class="tsd-kind-icon">get<wbr>Session</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="_application_secure_context_.genericsecurecontext.html#on" class="tsd-kind-icon">on</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="_application_secure_context_.genericsecurecontext.html#processincoming" class="tsd-kind-icon">process<wbr>Incoming</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="_application_secure_context_.genericsecurecontext.html#processoutgoing" class="tsd-kind-icon">process<wbr>Outgoing</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="_application_secure_context_.minimalsecurecontext.html" class="tsd-kind-icon">Minimal<wbr>Secure<wbr>Context</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -332,9 +387,6 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
 			</ul>
 		</div>
 	</div>

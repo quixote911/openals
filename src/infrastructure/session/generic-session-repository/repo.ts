@@ -57,7 +57,7 @@ export class GenericSessionRepository implements ISessionRepository {
         }
         // const sessionState = await this.sessionStore.getByCounterpartyId(counterPartyUniqueId) || this.getInitialSessionState();
         const existingSessionState = await this.sessionStore.getBySessionId<SV>(this.getSessionId(selfUniqueId, counterPartyUniqueId));
-        const sessionState = existingSessionState ? existingSessionState : this.getInitialSessionState(selfUniqueId, counterPartyUniqueId)
+        const sessionState = existingSessionState ? existingSessionState : this.getInitialSessionState<SV>(selfUniqueId, counterPartyUniqueId)
         // TODO: Write test cases and fix code for proper state recovery from serialized session
         const authProtocol = new AuthProtocol(authBundle.authProtocolSchema, authBundle.authProtocolLogic)
         return new Session(sessionState, authProtocol, credentials, securitySchema.settings)
@@ -65,7 +65,7 @@ export class GenericSessionRepository implements ISessionRepository {
     private getSessionId = (selfUniqueId: UniqueId, counterpartyUniqueId: UniqueId): UniqueId => {
         return selfUniqueId+counterpartyUniqueId;
     }
-    private getInitialSessionState = (selfUniqueId: UniqueId, counterpartyUniqueId: UniqueId): ISessionState<SV> => {
+    private getInitialSessionState = <SV> (selfUniqueId: UniqueId, counterpartyUniqueId: UniqueId): ISessionState<SV> => {
         // TODO: Add AuthType to sessionstate so that entire session state can be recovered
         return {
             sessionId: this.getSessionId(selfUniqueId, counterpartyUniqueId),

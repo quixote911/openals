@@ -62,21 +62,13 @@
 					<a href="_infrastructure_session_generic_session_repository_repo_.isessionstore.html">ISessionStore</a>
 				</li>
 			</ul>
-			<h1>Interface ISessionStore&lt;SV&gt;</h1>
+			<h1>Interface ISessionStore</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>SV</h4>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -110,21 +102,27 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="getbysessionid" class="tsd-anchor"></a>
 					<h3>get<wbr>BySession<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>BySession<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>sessionId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_domain_session_.isessionstate.html" class="tsd-signature-type">ISessionState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>BySession<wbr>Id<span class="tsd-signature-symbol">:</span> &lt;SV&gt;<span class="tsd-signature-symbol">(</span>sessionId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_domain_session_.isessionstate.html" class="tsd-signature-type">ISessionState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/quixote911/openals/blob/26234fc/src/infrastructure/session/generic-session-repository/repo.ts#L12">infrastructure/session/generic-session-repository/repo.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/quixote911/openals/blob/ac36379/src/infrastructure/session/generic-session-repository/repo.ts#L12">infrastructure/session/generic-session-repository/repo.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>sessionId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_domain_session_.isessionstate.html" class="tsd-signature-type">ISessionState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-has-type-parameter">
+									<li class="tsd-signature tsd-kind-icon">&lt;SV&gt;<span class="tsd-signature-symbol">(</span>sessionId<span class="tsd-signature-symbol">: </span><a href="../modules/_domain_session_.html#uniqueid" class="tsd-signature-type">UniqueId</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_domain_session_.isessionstate.html" class="tsd-signature-type">ISessionState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
+										<h4 class="tsd-type-parameters-title">Type parameters</h4>
+										<ul class="tsd-type-parameters">
+											<li>
+												<h4>SV</h4>
+											</li>
+										</ul>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
@@ -141,21 +139,27 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="save" class="tsd-anchor"></a>
 					<h3>save</h3>
-					<div class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>sessionState<span class="tsd-signature-symbol">: </span><a href="_domain_session_.isessionstate.html" class="tsd-signature-type">ISessionState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">:</span> &lt;SV&gt;<span class="tsd-signature-symbol">(</span>sessionState<span class="tsd-signature-symbol">: </span><a href="_domain_session_.isessionstate.html" class="tsd-signature-type">ISessionState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/quixote911/openals/blob/26234fc/src/infrastructure/session/generic-session-repository/repo.ts#L11">infrastructure/session/generic-session-repository/repo.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/quixote911/openals/blob/ac36379/src/infrastructure/session/generic-session-repository/repo.ts#L11">infrastructure/session/generic-session-repository/repo.ts:11</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>sessionState<span class="tsd-signature-symbol">: </span><a href="_domain_session_.isessionstate.html" class="tsd-signature-type">ISessionState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-has-type-parameter">
+									<li class="tsd-signature tsd-kind-icon">&lt;SV&gt;<span class="tsd-signature-symbol">(</span>sessionState<span class="tsd-signature-symbol">: </span><a href="_domain_session_.isessionstate.html" class="tsd-signature-type">ISessionState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
+										<h4 class="tsd-type-parameters-title">Type parameters</h4>
+										<ul class="tsd-type-parameters">
+											<li>
+												<h4>SV</h4>
+											</li>
+										</ul>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
@@ -199,24 +203,24 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="../classes/_infrastructure_session_generic_session_repository_repo_.genericsessionrepository.html" class="tsd-kind-icon">Generic<wbr>Session<wbr>Repository</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_infrastructure_session_generic_session_repository_repo_.iauthbundleprovider.html" class="tsd-kind-icon">IAuth<wbr>Bundle<wbr>Provider</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_infrastructure_session_generic_session_repository_repo_.icredentialprovider.html" class="tsd-kind-icon">ICredential<wbr>Provider</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="_infrastructure_session_generic_session_repository_repo_.isecurityschema.html" class="tsd-kind-icon">ISecurity<wbr>Schema</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_infrastructure_session_generic_session_repository_repo_.isecurityschemaprovider.html" class="tsd-kind-icon">ISecurity<wbr>Schema<wbr>Provider</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+					<li class="current tsd-kind-interface tsd-parent-kind-module">
 						<a href="_infrastructure_session_generic_session_repository_repo_.isessionstore.html" class="tsd-kind-icon">ISession<wbr>Store</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
