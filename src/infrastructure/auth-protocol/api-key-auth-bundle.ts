@@ -6,10 +6,11 @@ import {
     IAuthProtocolLogic,
     ISessionStateChangeEvents
 } from "../../domain/auth-protocol";
-import {CoreOptions, Headers} from "request";
+import {Headers} from "request";
+import {Header, Request as PostmanCollectionRequest} from "postman-collection"
 
 
-type M = CoreOptions;
+type M = PostmanCollectionRequest;
 type SV = void;
 interface C {
     apiKey: string;
@@ -29,10 +30,20 @@ class ApiKeyAuthProtocolLogic implements IAuthProtocolLogic<M,SV,C,AS> {
         return message;
     }
     public processOutgoing = async (message: M, context: IAuthProtocolContext<SV,C,AS>, emitter: Emitter<ISessionStateChangeEvents<SV>>): Promise<M> => {
-        // respect the settings specified by context.authProtocolSettings
-        const headers: Headers = message.headers ? message.headers : {}
-        headers.apiKey = context.selfCredentials.apiKey;
-        message.headers = headers;
+        if (!context.authProtocolSettings) {
+            throw Error("Settings must be there");
+        }
+        switch(context.authProtocolSettings.in) {
+            case "header": {
+                const headers: Headers = message.headers ? message.headers : {}
+                headers.apiKey = context.selfCredentials.apiKey;
+                message.addHeader(new Header({key: context.authProtocolSettings.name, value: context.selfCredentials.apiKey}))
+                break;
+            }
+            default: {
+                throw Error("Invalid setting for in");
+            }
+        }
         return message;
     }
 
