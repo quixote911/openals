@@ -1,0 +1,692 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AuthProtocol | openals</title>
+	<meta name="description" content="Documentation for openals">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">openals</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_domain_auth_protocol_.html">&quot;domain/auth-protocol&quot;</a>
+				</li>
+				<li>
+					<a href="_domain_auth_protocol_.authprotocol.html">AuthProtocol</a>
+				</li>
+			</ul>
+			<h1>Class AuthProtocol&lt;M, SV, C, AS&gt;</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>To create an AuthProtocol you need 3 things</p>
+						<ol>
+							<li>authProtocolSchema
+								defines settingsSchema: schema for which authProtocolSettings does this authProtocolLogic need for it to run
+							defines sessionVariableSchema: schema for sessionVariables its capable of producing</li>
+							<li>authProtocolLogic:
+							defines function which run which run hooks like processIncoming, processOutgoing, ensureActive</li>
+							<li>authProtocolSettings</li>
+						</ol>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>M</h4>
+					</li>
+					<li>
+						<h4>SV</h4>
+					</li>
+					<li>
+						<h4>C</h4>
+					</li>
+					<li>
+						<h4>AS</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">AuthProtocol</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_domain_auth_protocol_.authprotocol.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_domain_auth_protocol_.authprotocol.html#authprotocollogic" class="tsd-kind-icon">auth<wbr>Protocol<wbr>Logic</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_domain_auth_protocol_.authprotocol.html#authprotocolschema" class="tsd-kind-icon">auth<wbr>Protocol<wbr>Schema</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_domain_auth_protocol_.authprotocol.html#externalemitter" class="tsd-kind-icon">external<wbr>Emitter</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_domain_auth_protocol_.authprotocol.html#internalemitter" class="tsd-kind-icon">internal<wbr>Emitter</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_domain_auth_protocol_.authprotocol.html#ensureactivesession" class="tsd-kind-icon">ensure<wbr>Active<wbr>Session</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_domain_auth_protocol_.authprotocol.html#getcontext" class="tsd-kind-icon">get<wbr>Context</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_domain_auth_protocol_.authprotocol.html#on" class="tsd-kind-icon">on</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_domain_auth_protocol_.authprotocol.html#processincoming" class="tsd-kind-icon">process<wbr>Incoming</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_domain_auth_protocol_.authprotocol.html#processoutgoing" class="tsd-kind-icon">process<wbr>Outgoing</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_domain_auth_protocol_.authprotocol.html#validateauthprotocolinputs" class="tsd-kind-icon">validate<wbr>Auth<wbr>Protocol<wbr>Inputs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_domain_auth_protocol_.authprotocol.html#validatecredentials" class="tsd-kind-icon">validate<wbr>Credentials</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_domain_auth_protocol_.authprotocol.html#validatesessionvariables" class="tsd-kind-icon">validate<wbr>Session<wbr>Variables</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_domain_auth_protocol_.authprotocol.html#validatesettings" class="tsd-kind-icon">validate<wbr>Settings</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-private"><a href="_domain_auth_protocol_.authprotocol.html#statechangeeventhandlers" class="tsd-kind-icon">state<wbr>Change<wbr>Event<wbr>Handlers</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Auth<wbr>Protocol<span class="tsd-signature-symbol">(</span>authProtocolSchema<span class="tsd-signature-symbol">: </span><a href="../interfaces/_domain_auth_protocol_.iauthprotocolschema.html" class="tsd-signature-type">IAuthProtocolSchema</a>, authProtocolLogic<span class="tsd-signature-symbol">: </span><a href="../interfaces/_domain_auth_protocol_.iauthprotocollogic.html" class="tsd-signature-type">IAuthProtocolLogic</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_domain_auth_protocol_.authprotocol.html" class="tsd-signature-type">AuthProtocol</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L67">domain/auth-protocol.ts:67</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>authProtocolSchema: <a href="../interfaces/_domain_auth_protocol_.iauthprotocolschema.html" class="tsd-signature-type">IAuthProtocolSchema</a></h5>
+								</li>
+								<li>
+									<h5>authProtocolLogic: <a href="../interfaces/_domain_auth_protocol_.iauthprotocollogic.html" class="tsd-signature-type">IAuthProtocolLogic</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_domain_auth_protocol_.authprotocol.html" class="tsd-signature-type">AuthProtocol</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="authprotocollogic" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> auth<wbr>Protocol<wbr>Logic</h3>
+					<div class="tsd-signature tsd-kind-icon">auth<wbr>Protocol<wbr>Logic<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_domain_auth_protocol_.iauthprotocollogic.html" class="tsd-signature-type">IAuthProtocolLogic</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L49">domain/auth-protocol.ts:49</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="authprotocolschema" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> auth<wbr>Protocol<wbr>Schema</h3>
+					<div class="tsd-signature tsd-kind-icon">auth<wbr>Protocol<wbr>Schema<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_domain_auth_protocol_.iauthprotocolschema.html" class="tsd-signature-type">IAuthProtocolSchema</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L48">domain/auth-protocol.ts:48</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="externalemitter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> external<wbr>Emitter</h3>
+					<div class="tsd-signature tsd-kind-icon">external<wbr>Emitter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Emitter</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_domain_auth_protocol_.iauthprotocolevents.html" class="tsd-signature-type">IAuthProtocolEvents</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L51">domain/auth-protocol.ts:51</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="internalemitter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> internal<wbr>Emitter</h3>
+					<div class="tsd-signature tsd-kind-icon">internal<wbr>Emitter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Emitter</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_domain_auth_protocol_.isessionstatechangeevents.html" class="tsd-signature-type">ISessionStateChangeEvents</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L50">domain/auth-protocol.ts:50</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ensureactivesession" class="tsd-anchor"></a>
+					<h3>ensure<wbr>Active<wbr>Session</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">ensure<wbr>Active<wbr>Session<span class="tsd-signature-symbol">(</span>sessionVariables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, selfCredentials<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span>, authProtocolSettings<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">AS</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L78">domain/auth-protocol.ts:78</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sessionVariables: <span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+								<li>
+									<h5>selfCredentials: <span class="tsd-signature-type">C</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> authProtocolSettings: <a href="" class="tsd-signature-type">AS</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="getcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Context</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Context<span class="tsd-signature-symbol">(</span>selfCredentials<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span>, sessionVariables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, authProtocolSettings<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">AS</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_domain_auth_protocol_.iauthprotocolcontext.html" class="tsd-signature-type">IAuthProtocolContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L111">domain/auth-protocol.ts:111</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>selfCredentials: <span class="tsd-signature-type">C</span></h5>
+								</li>
+								<li>
+									<h5>sessionVariables: <span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> authProtocolSettings: <a href="" class="tsd-signature-type">AS</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_domain_auth_protocol_.iauthprotocolcontext.html" class="tsd-signature-type">IAuthProtocolContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+					<a name="on" class="tsd-anchor"></a>
+					<h3>on</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">on&lt;E&gt;<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">E</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IAuthProtocolEvents</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Unsubscribe</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L98">domain/auth-protocol.ts:98</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>E<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><a href="../interfaces/_domain_auth_protocol_.iauthprotocolevents.html" class="tsd-signature-type">IAuthProtocolEvents</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <span class="tsd-signature-type">E</span></h5>
+								</li>
+								<li>
+									<h5>callback: <span class="tsd-signature-type">IAuthProtocolEvents</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Unsubscribe</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="processincoming" class="tsd-anchor"></a>
+					<h3>process<wbr>Incoming</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Incoming<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">M</span>, sessionVariables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, selfCredentials<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span>, authProtocolSettings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L84">domain/auth-protocol.ts:84</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>message: <span class="tsd-signature-type">M</span></h5>
+								</li>
+								<li>
+									<h5>sessionVariables: <span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+								<li>
+									<h5>selfCredentials: <span class="tsd-signature-type">C</span></h5>
+								</li>
+								<li>
+									<h5>authProtocolSettings: <span class="tsd-signature-type">AS</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="processoutgoing" class="tsd-anchor"></a>
+					<h3>process<wbr>Outgoing</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Outgoing<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">M</span>, sessionVariables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, selfCredentials<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span>, authProtocolSettings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L91">domain/auth-protocol.ts:91</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>message: <span class="tsd-signature-type">M</span></h5>
+								</li>
+								<li>
+									<h5>sessionVariables: <span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+								<li>
+									<h5>selfCredentials: <span class="tsd-signature-type">C</span></h5>
+								</li>
+								<li>
+									<h5>authProtocolSettings: <span class="tsd-signature-type">AS</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="validateauthprotocolinputs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> validate<wbr>Auth<wbr>Protocol<wbr>Inputs</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Auth<wbr>Protocol<wbr>Inputs<span class="tsd-signature-symbol">(</span>authProtocolSchema<span class="tsd-signature-symbol">: </span><a href="../interfaces/_domain_auth_protocol_.iauthprotocolschema.html" class="tsd-signature-type">IAuthProtocolSchema</a>, authProtocolLogic<span class="tsd-signature-symbol">: </span><a href="../interfaces/_domain_auth_protocol_.iauthprotocollogic.html" class="tsd-signature-type">IAuthProtocolLogic</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L118">domain/auth-protocol.ts:118</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>authProtocolSchema: <a href="../interfaces/_domain_auth_protocol_.iauthprotocolschema.html" class="tsd-signature-type">IAuthProtocolSchema</a></h5>
+								</li>
+								<li>
+									<h5>authProtocolLogic: <a href="../interfaces/_domain_auth_protocol_.iauthprotocollogic.html" class="tsd-signature-type">IAuthProtocolLogic</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">M</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AS</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="validatecredentials" class="tsd-anchor"></a>
+					<h3>validate<wbr>Credentials</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Credentials<span class="tsd-signature-symbol">(</span>credentials<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L102">domain/auth-protocol.ts:102</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>credentials: <span class="tsd-signature-type">C</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="validatesessionvariables" class="tsd-anchor"></a>
+					<h3>validate<wbr>Session<wbr>Variables</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Session<wbr>Variables<span class="tsd-signature-symbol">(</span>sessionVariables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L108">domain/auth-protocol.ts:108</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sessionVariables: <span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="validatesettings" class="tsd-anchor"></a>
+					<h3>validate<wbr>Settings</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Settings<span class="tsd-signature-symbol">(</span>authProtocolSettings<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">AS</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L105">domain/auth-protocol.ts:105</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> authProtocolSettings: <a href="" class="tsd-signature-type">AS</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-private">
+					<a name="statechangeeventhandlers" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> state<wbr>Change<wbr>Event<wbr>Handlers</h3>
+					<div class="tsd-signature tsd-kind-icon">state<wbr>Change<wbr>Event<wbr>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L52">domain/auth-protocol.ts:52</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="statechangeeventhandlers.activated" class="tsd-anchor"></a>
+						<h3>activated</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">activated<span class="tsd-signature-symbol">(</span>newSessionVariables<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SV</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L53">domain/auth-protocol.ts:53</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>newSessionVariables: <span class="tsd-signature-type">SV</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="statechangeeventhandlers.blocked" class="tsd-anchor"></a>
+						<h3>blocked</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">blocked<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L61">domain/auth-protocol.ts:61</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="statechangeeventhandlers.expired" class="tsd-anchor"></a>
+						<h3>expired</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">expired<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/quixote911/openals/blob/c5af989/src/domain/auth-protocol.ts#L64">domain/auth-protocol.ts:64</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_application_secure_context_.html">&quot;application/secure-<wbr>context&quot;</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/_domain_auth_protocol_.html">&quot;domain/auth-<wbr>protocol&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_domain_session_.html">&quot;domain/session&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_infrastructure_auth_protocol_api_key_auth_bundle_.html">&quot;infrastructure/auth-<wbr>protocol/api-<wbr>key-<wbr>auth-<wbr>bundle&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_infrastructure_session_generic_session_repository_impl_.html">&quot;infrastructure/session/generic-<wbr>session-<wbr>repository/impl&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_infrastructure_session_generic_session_repository_repo_.html">&quot;infrastructure/session/generic-<wbr>session-<wbr>repository/repo&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_domain_auth_protocol_.authprotocol.html" class="tsd-kind-icon">Auth<wbr>Protocol</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_domain_auth_protocol_.authprotocol.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_domain_auth_protocol_.authprotocol.html#authprotocollogic" class="tsd-kind-icon">auth<wbr>Protocol<wbr>Logic</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_domain_auth_protocol_.authprotocol.html#authprotocolschema" class="tsd-kind-icon">auth<wbr>Protocol<wbr>Schema</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_domain_auth_protocol_.authprotocol.html#externalemitter" class="tsd-kind-icon">external<wbr>Emitter</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_domain_auth_protocol_.authprotocol.html#internalemitter" class="tsd-kind-icon">internal<wbr>Emitter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_domain_auth_protocol_.authprotocol.html#ensureactivesession" class="tsd-kind-icon">ensure<wbr>Active<wbr>Session</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_domain_auth_protocol_.authprotocol.html#getcontext" class="tsd-kind-icon">get<wbr>Context</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+								<a href="_domain_auth_protocol_.authprotocol.html#on" class="tsd-kind-icon">on</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_domain_auth_protocol_.authprotocol.html#processincoming" class="tsd-kind-icon">process<wbr>Incoming</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_domain_auth_protocol_.authprotocol.html#processoutgoing" class="tsd-kind-icon">process<wbr>Outgoing</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_domain_auth_protocol_.authprotocol.html#validateauthprotocolinputs" class="tsd-kind-icon">validate<wbr>Auth<wbr>Protocol<wbr>Inputs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_domain_auth_protocol_.authprotocol.html#validatecredentials" class="tsd-kind-icon">validate<wbr>Credentials</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_domain_auth_protocol_.authprotocol.html#validatesessionvariables" class="tsd-kind-icon">validate<wbr>Session<wbr>Variables</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_domain_auth_protocol_.authprotocol.html#validatesettings" class="tsd-kind-icon">validate<wbr>Settings</a>
+							</li>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-private">
+								<a href="_domain_auth_protocol_.authprotocol.html#statechangeeventhandlers" class="tsd-kind-icon">state<wbr>Change<wbr>Event<wbr>Handlers</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-not-exported">
+						<a href="_domain_auth_protocol_.authprotocolvalidationhelper.html" class="tsd-kind-icon">Auth<wbr>Protocol<wbr>Validation<wbr>Helper</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/_domain_auth_protocol_.iauthprotocolbundle.html" class="tsd-kind-icon">IAuth<wbr>Protocol<wbr>Bundle</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/_domain_auth_protocol_.iauthprotocolcontext.html" class="tsd-kind-icon">IAuth<wbr>Protocol<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/_domain_auth_protocol_.iauthprotocolevents.html" class="tsd-kind-icon">IAuth<wbr>Protocol<wbr>Events</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/_domain_auth_protocol_.iauthprotocollogic.html" class="tsd-kind-icon">IAuth<wbr>Protocol<wbr>Logic</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_domain_auth_protocol_.iauthprotocolschema.html" class="tsd-kind-icon">IAuth<wbr>Protocol<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="../interfaces/_domain_auth_protocol_.isessionstatechangeevents.html" class="tsd-kind-icon">ISession<wbr>State<wbr>Change<wbr>Events</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -71,7 +71,6 @@ export class GenericSessionRepository<M,SV,C,AS> implements ISessionRepository<M
             sessionId: this.getSessionId(selfUniqueId, counterpartyUniqueId),
             status: SessionStatus.INIT,
         }
-        // TODO: shouldn't need to cast this!
     }
 
 }
