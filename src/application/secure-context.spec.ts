@@ -8,6 +8,7 @@ import {
 } from "../infrastructure/session/generic-session-repository/impl";
 import {IAuthBundleProvider} from "../infrastructure/session/generic-session-repository/repo";
 import {ISessionState} from "../domain/session";
+import {Request} from "postman-collection";
 
 describe("Testing  Secure Context", () => {
     describe("Testing Generic Secure Context", () => {
@@ -42,7 +43,7 @@ describe("Testing  Secure Context", () => {
             const securitySchemaProvider = new InMemorySecuritySchemaProvider<AS>(securitySchemaMapping);
 
 
-            type M = CoreOptions
+            type M = Request
             const authBundleProvider: IAuthBundleProvider<M,SV,C,AS> = new InMemoryAuthBundleProvider(authBundleMapping)
 
             const secureContext = new GenericSecureContext<M,SV,C,AS>(
@@ -77,7 +78,7 @@ describe("Testing  Secure Context", () => {
             }
         }
         it("instantiates with valid inputs", () => {
-            type M = CoreOptions
+            type M = Request
             type SV = void;
             type C = {apiKey: string}
             type AS = {name: string, in: string}

@@ -32,7 +32,7 @@ abstract class GenericInMemoryProvider<DataType> {
     };
 }
 
-
+// TODO: Are generics really in the right place? Credentials can be any type actually. only while getting the credentials we know what type they will be.
 export class InMemoryCredentialProvider<C> extends GenericInMemoryProvider<C> implements ICredentialProvider<C>{
 }
 
