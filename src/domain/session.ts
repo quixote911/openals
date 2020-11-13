@@ -5,7 +5,7 @@ export type UniqueId = string
 
 export interface ISessionRepository<M,SV,C,AS> {
     save: (session: Session<M,SV,C,AS>) => Promise<void>;
-    getOrCreate: (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId) => Promise<Session<M,SV,C,AS>>;
+    get: (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId) => Promise<Session<M,SV,C,AS>>;
     // deleteById: (sessionId: unknown) => Promise<void>;
     // getById: (sessionId: unknown) => Promise<Session>;
 }

@@ -22,7 +22,7 @@ export abstract class AbstractSecureContext<M,SV,C,AS> {
         this.externalEmitter = createNanoEvents<ISessionEvents<SV>>();
     }
     private getSession = async (selfId: UniqueId, counterpartyId: UniqueId): Promise<Session<M,SV,C,AS>> => {
-        const session = await this.sessionRepo.getOrCreate(selfId, counterpartyId);
+        const session = await this.sessionRepo.get(selfId, counterpartyId);
         this.addEventHandlers(session);
         return session;
     }

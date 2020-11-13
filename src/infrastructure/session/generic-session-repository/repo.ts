@@ -42,7 +42,7 @@ export class GenericSessionRepository<M,SV,C,AS> implements ISessionRepository<M
     public save = async (session: Session<M,SV,C,AS>): Promise<void> => {
         return this.sessionStore.save(session.sessionState)
     }
-    public getOrCreate = async (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId): Promise<Session<M,SV,C,AS>> => {
+    public get = async (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId): Promise<Session<M,SV,C,AS>> => {
         const credentials: C = await this.credentialProvider.get(selfUniqueId);
         if (!credentials) {
             throw new Error("Cannot find credentials for provided selfUniqueId")
