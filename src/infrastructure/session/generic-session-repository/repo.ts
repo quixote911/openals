@@ -26,7 +26,7 @@ export interface IAuthBundleProvider {
 
 
 
-export class GenericSessionRepository implements ISessionRepository {
+export class GenericSessionRepository<M> implements ISessionRepository<M> {
     private sessionStore: ISessionStore;
     private securitySchemaStore: ISecuritySchemaProvider;
     private credentialProvider: ICredentialProvider;
@@ -39,10 +39,10 @@ export class GenericSessionRepository implements ISessionRepository {
         this.securitySchemaStore = securitySchemaStore;
         this.authBundleProvider = authBundleProvider;
     }
-    public save = async <M,SV,C,AS> (session: Session<M,SV,C,AS>): Promise<void> => {
+    public save = async <SV,C,AS> (session: Session<M,SV,C,AS>): Promise<void> => {
         return this.sessionStore.save<SV>(session.sessionState)
     }
-    public get = async <M,SV,C,AS> (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId): Promise<Session<M,SV,C,AS>> => {
+    public get = async <SV,C,AS> (selfUniqueId: UniqueId, counterPartyUniqueId: UniqueId): Promise<Session<M,SV,C,AS>> => {
         const credentials = await this.credentialProvider.get<C>(selfUniqueId);
         if (!credentials) {
             throw new Error("Cannot find credentials for provided selfUniqueId")

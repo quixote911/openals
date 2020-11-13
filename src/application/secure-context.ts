@@ -15,16 +15,16 @@ import {createNanoEvents, Emitter, Unsubscribe} from "nanoevents";
 
 
 export abstract class AbstractSecureContext<M> {
-    private sessionRepo: ISessionRepository;
+    private sessionRepo: ISessionRepository<M>;
     private externalEmitter: Emitter<ISessionEvents<unknown>>; //TODO: Define separate event interface for securecontext
-    protected constructor(sessionRepo: ISessionRepository) {
+    protected constructor(sessionRepo: ISessionRepository<M>) {
         this.sessionRepo = sessionRepo;
         this.externalEmitter = createNanoEvents<ISessionEvents<unknown>>();
     }
     private addEventHandlers = <SV,C,AS>(session: Session<M,SV,C,AS>) => {
         // TODO: Understand behavior if same session object is returned. will we get 1 more handler every time this is fetched?
         session.on("stateChanged", async (state: ISessionState<SV>)=> {
-            await this.sessionRepo.save<M,SV,C,AS>(session);
+            await this.sessionRepo.save<SV,C,AS>(session);
             // TODO: Catch error while saving repository. Event interface should be different.
             this.externalEmitter.emit("stateChanged", state);
         })
@@ -36,7 +36,7 @@ export abstract class AbstractSecureContext<M> {
         return this.externalEmitter.on(event, callback);
     }
     public getSession = async <SV,C,AS> (selfId: UniqueId, counterpartyId: UniqueId): Promise<Session<M,SV,C,AS>> => {
-        const session = await this.sessionRepo.get<M,SV,C,AS>(selfId, counterpartyId);
+        const session = await this.sessionRepo.get<SV,C,AS>(selfId, counterpartyId);
         this.addEventHandlers(session);
         return session;
     }
@@ -57,7 +57,7 @@ export class GenericSecureContext<M> extends AbstractSecureContext<M> {
                 sessionStore: ISessionStore,
                 securitySchemaProvider: ISecuritySchemaProvider,
                 authBundleProvider: IAuthBundleProvider ) {
-        const sessionRepo = new GenericSessionRepository(credentialProvider, sessionStore, securitySchemaProvider, authBundleProvider);
+        const sessionRepo = new GenericSessionRepository<M>(credentialProvider, sessionStore, securitySchemaProvider, authBundleProvider);
         super(sessionRepo);
     }
 }
