@@ -1,0 +1,10 @@
+POST http://localhost:8081/do
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "log",
+  "params": "hello",
+  "id": 1
+}
+

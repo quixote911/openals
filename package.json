@@ -29,8 +29,7 @@
     "typescript",
     "boilerplate"
   ],
-  "author": "Michal Zalecki <michal@michalzalecki.com>",
-  "license": "ISC",
+  "author": "Ankit Arora <ankit@metasky.ai>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MichalZalecki/ts-lib-boilerplate.git"
@@ -53,11 +52,10 @@
   },
   "dependencies": {
     "@types/request": "^2.48.5",
-    "@types/uuid": "^8.3.0",
-    "jsonschema": "^1.4.0",
     "nanoevents": "^5.1.10",
-    "postman-collection": "*",
-    "request": "^2.88.2",
-    "uuid": "^8.3.1"
+    "express": "*",
+    "@types/express": "*",
+    "json-rpc-2.0": "*",
+    "ts-node": "*"
   }
 }

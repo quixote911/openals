@@ -1,0 +1,48 @@
+POST http://localhost:8081/do
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "log",
+  "params": "hello",
+  "id": 1
+}
+
+<> 2022-01-08T004533.200.json
+
+###
+
+POST http://localhost:8081/do
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "echo",
+  "params": "hello",
+  "id": 1
+}
+
+<> 2022-01-08T004528.200.json
+
+###
+
+POST http://localhost:8081/do
+Content-Type: application/json
+
+{
+  "yo": "lo"
+}
+
+<> 2022-01-08T004356.200.json
+
+###
+
+POST http://localhost:80/api/item
+Content-Type: application/json
+
+{
+  "yo": "lo"
+}
+
+###
+
